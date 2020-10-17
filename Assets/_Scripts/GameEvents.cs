@@ -19,6 +19,8 @@ public class GameEvents : MonoBehaviour
     public event Action onEnemyHit;
     public event Action onColdLoot;
     public event Action onWarmLoot;
+    public event Action onInvUpdate;
+
     public void CubeTouched()
     {
         if (onTouchCube != null)
@@ -63,6 +65,14 @@ public class GameEvents : MonoBehaviour
         if (onWarmLoot != null)
         {
             onWarmLoot();
+        }
+    }
+
+    public void InvUpdate()
+    {
+        if(onInvUpdate != null)
+        {
+            onInvUpdate();
         }
     }
 }

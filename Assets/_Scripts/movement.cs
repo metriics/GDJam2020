@@ -7,7 +7,7 @@ public class movement : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 curMoveVector = new Vector3();
-    [SerializeField]
+    [SerializeField] private InventoryUI inventoryUI;
     public float speed = 3.2f;
     
 
@@ -16,11 +16,14 @@ public class movement : MonoBehaviour
     bool isAttacking = false;
     float knockbackTime = 0.0f;
     float attackTime = 0.0f;
+    Inventory inventory;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         GameEvents.current.onEnemyAttack += Knockback;
+        inventory = new Inventory();
+        inventoryUI.SetInventory(inventory);
     }
 
     // Update is called once per frame
@@ -98,5 +101,10 @@ public class movement : MonoBehaviour
     public bool isKnocked()
     {
         return isBeingKnocked;
+    }
+
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 }
