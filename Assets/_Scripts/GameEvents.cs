@@ -20,6 +20,7 @@ public class GameEvents : MonoBehaviour
     public event Action onColdLoot;
     public event Action onWarmLoot;
     public event Action onInvUpdate;
+    public event Action onDig;
 
     public void CubeTouched()
     {
@@ -73,6 +74,14 @@ public class GameEvents : MonoBehaviour
         if(onInvUpdate != null)
         {
             onInvUpdate();
+        }
+    }
+
+    public void Dig()
+    {
+        if (onDig != null)
+        {
+            onDig();
         }
     }
 }

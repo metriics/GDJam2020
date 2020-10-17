@@ -14,6 +14,8 @@ public class DetectorBehaviour : MonoBehaviour
     private string status = "off";
     private bool recentStatusChange = false;
 
+    public static Vector3 digSite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +63,16 @@ public class DetectorBehaviour : MonoBehaviour
                 blinkTimer = 0.0f;
             }
 
+            Vector3 digVec = digSite - this.transform.position;
+            float digDist = digVec.magnitude;
+
+
+            if (digDist <= 0.1)
+            {
+                SetStatusOn();
+                gameObject.transform.parent.gameObject.GetComponent<movement>().SetCanDig(true);
+                Debug.Log(digDist);
+            }
 
             // ---- why doesnt this work???
             // check if close to loot, only include colliders on layer 9 (Loot layer)
@@ -69,6 +81,20 @@ public class DetectorBehaviour : MonoBehaviour
             //{
             //    SetStatusOn();
             //}
+        }
+
+        if (status == "on")
+        {
+            Vector3 digVec = digSite - this.transform.position;
+            float digDist = digVec.magnitude;
+
+
+            if (digDist >= 0.1)
+            {
+                SetStatusBlinking();
+                gameObject.transform.parent.gameObject.GetComponent<movement>().SetCanDig(false);
+                Debug.Log(digDist);
+            }
         }
     }
 
@@ -91,5 +117,10 @@ public class DetectorBehaviour : MonoBehaviour
         Debug.Log("Hot");
         status = "on";
         recentStatusChange = true;
+    }
+
+    public void SetDigSite(Vector3 newDigSite)
+    {
+        digSite = newDigSite;
     }
 }

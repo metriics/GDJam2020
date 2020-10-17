@@ -79,6 +79,8 @@ public class Loot : MonoBehaviour
         if (other.tag == "DetectorCollider")
         {
             GameEvents.current.WarmLoot();
+            DetectorBehaviour detector = new DetectorBehaviour();
+            detector.SetDigSite(other.gameObject.transform.position);
         }
 
         if(other.tag == "Player")
@@ -87,7 +89,8 @@ public class Loot : MonoBehaviour
             Inventory inv = other.gameObject.GetComponent<movement>().GetInventory();
             inv.AddLoot(this);
             Debug.Log("Added: " + this.lootType);
-            DestroySelf();
+            //DestroySelf();
+            GameEvents.current.ColdLoot();
         }
     }
 

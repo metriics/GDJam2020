@@ -14,6 +14,8 @@ public class movement : MonoBehaviour
     bool isBeingKnocked = false;
     bool isFacingRight = true;
     bool isAttacking = false;
+    bool canDig = false;
+    bool invUIOn = false;
     float knockbackTime = 0.0f;
     float attackTime = 0.0f;
     Inventory inventory;
@@ -29,6 +31,12 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            invUIOn = !invUIOn;
+            inventoryUI.gameObject.SetActive(invUIOn);
+        }
+
         if (isFacingRight)
         {
             this.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
@@ -101,6 +109,11 @@ public class movement : MonoBehaviour
     public bool isKnocked()
     {
         return isBeingKnocked;
+    }
+
+    public void SetCanDig(bool canIDig)
+    {
+        canDig = canIDig; 
     }
 
     public Inventory GetInventory()

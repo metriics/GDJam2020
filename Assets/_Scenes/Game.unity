@@ -589,6 +589,10 @@ MonoBehaviour:
   target: {fileID: 948983506}
   smoothSpeed: 10
   offset: {x: 0, y: 0, z: -10}
+  maxX: 1000
+  minX: -1000
+  maxY: 500
+  minY: -500
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -741,7 +745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &536135905
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1390,7 +1394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1225540304
 RectTransform:
   m_ObjectHideFlags: 0
