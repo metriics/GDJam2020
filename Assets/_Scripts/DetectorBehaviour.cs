@@ -21,6 +21,7 @@ public class DetectorBehaviour : MonoBehaviour
     {
         GameEvents.current.onColdLoot += SetStatusOff;
         GameEvents.current.onWarmLoot += SetStatusBlinking;
+        GameEvents.current.onHotLoot += SetStatusOn;
 
         colliderRadius = warmCollider.GetComponent<SphereCollider>().radius;
     }
@@ -61,39 +62,6 @@ public class DetectorBehaviour : MonoBehaviour
             else
             {
                 blinkTimer = 0.0f;
-            }
-
-            Vector3 digVec = digSite - this.transform.position;
-            float digDist = digVec.magnitude;
-
-
-            if (digDist <= 0.1)
-            {
-                SetStatusOn();
-                gameObject.transform.parent.gameObject.GetComponent<movement>().SetCanDig(true);
-                Debug.Log(digDist);
-            }
-
-            // ---- why doesnt this work???
-            // check if close to loot, only include colliders on layer 9 (Loot layer)
-            //Collider[] hits = Physics.OverlapSphere(warmCollider.transform.position, colliderRadius/3, 9);
-            //if (hits.Length > 0)
-            //{
-            //    SetStatusOn();
-            //}
-        }
-
-        if (status == "on")
-        {
-            Vector3 digVec = digSite - this.transform.position;
-            float digDist = digVec.magnitude;
-
-
-            if (digDist >= 0.1)
-            {
-                SetStatusBlinking();
-                gameObject.transform.parent.gameObject.GetComponent<movement>().SetCanDig(false);
-                Debug.Log(digDist);
             }
         }
     }
