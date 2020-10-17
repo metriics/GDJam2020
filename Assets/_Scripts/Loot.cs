@@ -76,13 +76,18 @@ public class Loot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "DetectorCollider")
+        if (other.tag == "WarmCollider")
         {
             GameEvents.current.WarmLoot();
-            DetectorBehaviour detector = new DetectorBehaviour();
-            detector.SetDigSite(other.gameObject.transform.position);
         }
 
+        if (other.tag == "HotCollider")
+        {
+            GameEvents.current.HotLoot();
+        }
+
+
+        // TODO: replace this with digging action elsewhere
         if(other.tag == "Player")
         {
             Debug.Log("Testing");
@@ -96,9 +101,14 @@ public class Loot : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "DetectorCollider")
+        if (other.tag == "WarmCollider")
         {
             GameEvents.current.ColdLoot();
+        }
+
+        if (other.tag == "HotCollider")
+        {
+            GameEvents.current.WarmLoot();
         }
     }
 

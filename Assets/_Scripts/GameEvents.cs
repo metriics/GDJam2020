@@ -19,6 +19,7 @@ public class GameEvents : MonoBehaviour
     public event Action onEnemyHit;
     public event Action onColdLoot;
     public event Action onWarmLoot;
+    public event Action onHotLoot;
     public event Action onInvUpdate;
     public event Action onDig;
 
@@ -66,6 +67,14 @@ public class GameEvents : MonoBehaviour
         if (onWarmLoot != null)
         {
             onWarmLoot();
+        }
+    }
+
+    public void HotLoot()
+    {
+        if (onHotLoot != null)
+        {
+            onHotLoot();
         }
     }
 
