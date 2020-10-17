@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class LootManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class LootManager : MonoBehaviour
     public int maxConcurrentLoot = 15;
     public float beachWidth = 20.0f;
     public float beachHeight = 10.0f;
+    public float buryDepth = -2.0f;
 
     public GameObject scrapsPrefab;
     public GameObject coinPrefab;
@@ -54,12 +56,38 @@ public class LootManager : MonoBehaviour
         Vector3 randPos = new Vector3();
         randPos.x = Random.Range(-beachWidth, beachWidth);
         randPos.y = Random.Range(-beachHeight, beachHeight);
+        randPos.z = buryDepth;
         loot.transform.position = randPos;
         return loot;
     }
 
-    public void AddToPool(GameObject obj)
+    private void AddToPool(GameObject obj)
     {
         lootPool.Add(obj);
+        lootPool[lootPool.Count - 1].transform.parent = this.transform; // set object as child of LootPool
+    }
+
+    public void AddQuestLootToPool(GameObject obj)
+    {
+        if (obj.tag != "Loot") // makes sure we aren't adding non-loot objects
+        {
+            Debug.LogError("Untagged loot object.", obj);
+            return;
+        }
+        else if (!obj.GetComponent<Loot>()) // same as above, object must have Loot.cs script
+        {
+            Debug.LogError("Improper loot object.", obj);
+            return;
+        }
+        else if (obj.GetComponent<Loot>().GetLootID() < 0) // cant add quest item that is not tracked
+        {
+            
+            Debug.LogError("Quest loot item MUST be tracked.", obj);
+            return;
+        }
+        else
+        {
+            AddToPool(RandomizePosition(obj));
+        }
     }
 }
