@@ -17,7 +17,7 @@ public class LootManager : MonoBehaviour
 
     void Start()
     {
-        
+        GameEvents.current.onDugUp += DeleteDug;
     }
 
     // Update is called once per frame
@@ -86,6 +86,25 @@ public class LootManager : MonoBehaviour
         else
         {
             AddToPool(RandomizePosition(obj));
+        }
+    }
+
+    private void DeleteDug()
+    {
+        List<GameObject> tempList = new List<GameObject>();
+
+        foreach (GameObject loot in lootPool)
+        {
+            if (loot.GetComponent<Loot>().amIHot())
+            {
+                tempList.Add(loot);
+            }
+        }
+
+        foreach(GameObject loot in tempList)
+        {
+            lootPool.Remove(loot);
+            loot.GetComponent<Loot>().DestroySelf();
         }
     }
 }

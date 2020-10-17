@@ -29,7 +29,6 @@ public class InventoryUI : MonoBehaviour
 
     private void RefreshInventoryItems()
     {
-        Debug.Log("Run");
         if (itemSlotContainer != null)
         {
             foreach (Transform child in itemSlotContainer)

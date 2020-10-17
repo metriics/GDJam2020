@@ -408,7 +408,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2799049323069089982, guid: 5396e3b79f6b6b847adaa0b799bd2062,
+  m_Sprite: {fileID: 3747135234590077896, guid: 7a71848c555cdd64a9b2bcb1cddf00a8,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -417,7 +417,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &386947675
@@ -432,8 +432,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb361620d4f16c546941d2dbb9553ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: {fileID: -3108126605492527242, guid: 5396e3b79f6b6b847adaa0b799bd2062, type: 3}
-  off: {fileID: -2799049323069089982, guid: 5396e3b79f6b6b847adaa0b799bd2062, type: 3}
+  on: {fileID: 652631496140175218, guid: 7a71848c555cdd64a9b2bcb1cddf00a8, type: 3}
+  off: {fileID: 3747135234590077896, guid: 7a71848c555cdd64a9b2bcb1cddf00a8, type: 3}
   blinkDelay: 0.25
 --- !u!850595691 &403351218
 LightingSettings:

@@ -17,6 +17,7 @@ public class Loot : MonoBehaviour
 
     public LootType lootType;
     public int amount;
+    bool isHot = false;
 
     private int lootID = -1;
 
@@ -104,6 +105,7 @@ public class Loot : MonoBehaviour
         if (other.tag == "HotCollider")
         {
             GameEvents.current.HotLoot();
+            isHot = true;
         }
 
 
@@ -120,14 +122,20 @@ public class Loot : MonoBehaviour
         if (other.tag == "WarmCollider")
         {
             GameEvents.current.ColdLoot();
+            isHot = false;
         }
 
         if (other.tag == "HotCollider")
         {
             GameEvents.current.WarmLoot();
+            isHot = false;
         }
     }
 
+    public bool amIHot()
+    {
+        return isHot;
+    }
     public void DestroySelf()
     {
         Destroy(gameObject);

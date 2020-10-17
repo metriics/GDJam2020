@@ -16,7 +16,6 @@ public class DigMinigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("He");
         multiplier = 5 * player.GetComponent<movement>().GetDigMultiplier();
     }
 
@@ -37,7 +36,6 @@ public class DigMinigame : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Q) && whichLetterNext == 'Q')
             {
-                Debug.Log("Press E");
                 TextMeshPro textUI = player.transform.Find("Dig").transform.Find("Text").GetComponent<TextMeshPro>();
                 textUI.SetText("E");
                 whichLetterNext = 'E';
@@ -45,7 +43,6 @@ public class DigMinigame : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E) && whichLetterNext == 'E')
             {
-                Debug.Log("Press Q");
                 TextMeshPro textUI = player.transform.Find("Dig").transform.Find("Text").GetComponent<TextMeshPro>();
                 textUI.SetText("Q");
                 whichLetterNext = 'Q';
@@ -54,7 +51,6 @@ public class DigMinigame : MonoBehaviour
 
             if (progress >= finished)
             {
-                Debug.Log("Done");
                 progress = 0;
                 active = false;
                 player.GetComponent<movement>().SetIsDigging(false);
