@@ -86,6 +86,8 @@ public class Loot : MonoBehaviour
             GameEvents.current.HotLoot();
         }
 
+
+        // TODO: replace this with digging action elsewhere
         if(other.tag == "Player")
         {
             Debug.Log("Testing");

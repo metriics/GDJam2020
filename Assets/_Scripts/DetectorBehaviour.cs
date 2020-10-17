@@ -9,12 +9,8 @@ public class DetectorBehaviour : MonoBehaviour
     public float blinkDelay = 0.25f;
 
     private float blinkTimer = 0.0f;
-    public Collider warmCollider;
-    private float colliderRadius;
     private string status = "off";
     private bool recentStatusChange = false;
-
-    public static Vector3 digSite;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +18,6 @@ public class DetectorBehaviour : MonoBehaviour
         GameEvents.current.onColdLoot += SetStatusOff;
         GameEvents.current.onWarmLoot += SetStatusBlinking;
         GameEvents.current.onHotLoot += SetStatusOn;
-
-        colliderRadius = warmCollider.GetComponent<SphereCollider>().radius;
     }
 
     // Update is called once per frame
@@ -85,10 +79,5 @@ public class DetectorBehaviour : MonoBehaviour
         Debug.Log("Hot");
         status = "on";
         recentStatusChange = true;
-    }
-
-    public void SetDigSite(Vector3 newDigSite)
-    {
-        digSite = newDigSite;
     }
 }
