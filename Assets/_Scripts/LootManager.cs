@@ -9,7 +9,6 @@ public class LootManager : MonoBehaviour
     public int maxConcurrentLoot = 15;
     public float beachWidth = 20.0f;
     public float beachHeight = 10.0f;
-    public float buryDepth = -2.0f;
 
     public GameObject scrapsPrefab;
     public GameObject coinPrefab;
@@ -56,7 +55,6 @@ public class LootManager : MonoBehaviour
         Vector3 randPos = new Vector3();
         randPos.x = Random.Range(-beachWidth, beachWidth);
         randPos.y = Random.Range(-beachHeight, beachHeight);
-        randPos.z = buryDepth;
         loot.transform.position = randPos;
         return loot;
     }

@@ -15,4 +15,18 @@ public class Loot : MonoBehaviour
     {
         lootID = id;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Enter");
+
+        GameEvents.current.WarmLoot();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Exit");
+
+        GameEvents.current.ColdLoot();
+    }
 }
