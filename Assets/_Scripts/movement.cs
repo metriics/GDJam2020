@@ -14,11 +14,16 @@ public class movement : MonoBehaviour
     bool isBeingKnocked = false;
     bool isFacingRight = true;
     bool isAttacking = false;
-    bool canDig = false;
+    bool canDig = true;
+    bool isDigging = false;
     bool invUIOn = false;
     float knockbackTime = 0.0f;
     float attackTime = 0.0f;
+
+    //Upgrades
+    int digUpgrade = 1;
     Inventory inventory;
+    public DigMinigame digGame;
 
     private void Start()
     {
@@ -56,9 +61,11 @@ public class movement : MonoBehaviour
             else
             {
                 knockbackTime += Time.deltaTime;
+                digGame.Stop();
+                isDigging = false;
             }
         }
-        else
+        else if(!isDigging)
         {
             curMoveVector = new Vector3();
             if (Input.GetKey(KeyCode.W))
@@ -82,6 +89,15 @@ public class movement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 isAttacking = true;
+            }
+            if (Input.GetKeyDown(KeyCode.E) && canDig)
+            {
+                isDigging = true;
+                if (digGame != null)
+                {
+                    Debug.Log("Start");
+                    digGame.SetState(true);
+                }
             }
 
             if (isAttacking)
@@ -116,6 +132,15 @@ public class movement : MonoBehaviour
         canDig = canIDig; 
     }
 
+    public void SetIsDigging(bool digging)
+    {
+        isDigging = digging;
+    }
+
+    public int GetDigMultiplier()
+    {
+        return digUpgrade;
+    }
     public Inventory GetInventory()
     {
         return inventory;

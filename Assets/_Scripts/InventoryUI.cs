@@ -30,14 +30,18 @@ public class InventoryUI : MonoBehaviour
     private void RefreshInventoryItems()
     {
         Debug.Log("Run");
-        foreach(Transform child in itemSlotContainer)
+        if (itemSlotContainer != null)
         {
-            if(child == itemSlotTemplate)
+            foreach (Transform child in itemSlotContainer)
             {
-                continue;
+                if (child == itemSlotTemplate)
+                {
+                    continue;
+                }
+                Destroy(child.gameObject);
             }
-            Destroy(child.gameObject);
         }
+
         int x = 0;
         int y = 0;
         float itemSlotCellSize = 60.0f;
