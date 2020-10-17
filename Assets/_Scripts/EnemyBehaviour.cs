@@ -1,13 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyBehaviour : MonoBehaviour
 {
     public GameObject player;
     public float speed = 1;
+    public int playerKnockbackMultiplier = 2;
+    public int enemyKnockbackMultiplier = 2;
+
+    bool isBeingKnocked = false;
+    float knockTimer = 0.0f;
 
     Vector3 move;
+    Vector3 playerKnock;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +24,52 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move = player.transform.position - this.transform.position;
-        move.Normalize();
+        if (isBeingKnocked)
+        {
+            if (knockTimer >= 0.5f)
+            {
+                isBeingKnocked = false;
+                knockTimer = 0.0f;
+            }
+            knockTimer += Time.deltaTime;
+            move = this.transform.position - player.transform.position;
+            move.Normalize();
 
-        this.transform.position += move * speed * Time.deltaTime;
+            this.transform.position += move * enemyKnockbackMultiplier * Time.deltaTime;
+        }
+        else
+        {
+            move = player.transform.position - this.transform.position;
+            move.Normalize();
+
+            this.transform.position += move * speed * Time.deltaTime;
+        }
+
+        //Knockback for the player
+        if (player.GetComponent<movement>().isKnocked())
+        {
+            playerKnock = player.transform.position - this.transform.position;
+            playerKnock.Normalize();
+
+            player.GetComponent<CharacterController>().enabled = false;
+            player.transform.position += playerKnock * playerKnockbackMultiplier * Time.deltaTime;
+            player.GetComponent<CharacterController>().enabled = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == player.name)
+        {
+            Debug.Log("Test");
+            GameEvents.current.EnemyAttack();
+        }
+
+        if(other.tag == "Attack Hitbox")
+        {
+            Debug.Log("Help");
+            isBeingKnocked = true;
+        }
+        Debug.Log(other.tag);
     }
 }
