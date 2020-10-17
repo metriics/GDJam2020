@@ -8,7 +8,6 @@ public class AttackTrigger : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            Debug.Log("Test");
             GameEvents.current.EnemyHit();
         }
     }

@@ -7,25 +7,36 @@ public class movement : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 curMoveVector = new Vector3();
-    [SerializeField]
+    [SerializeField] private InventoryUI inventoryUI;
     public float speed = 3.2f;
     
 
     bool isBeingKnocked = false;
     bool isFacingRight = true;
     bool isAttacking = false;
+    bool canDig = false;
+    bool invUIOn = false;
     float knockbackTime = 0.0f;
     float attackTime = 0.0f;
+    Inventory inventory;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         GameEvents.current.onEnemyAttack += Knockback;
+        inventory = new Inventory();
+        inventoryUI.SetInventory(inventory);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            invUIOn = !invUIOn;
+            inventoryUI.gameObject.SetActive(invUIOn);
+        }
+
         if (isFacingRight)
         {
             this.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
@@ -98,5 +109,15 @@ public class movement : MonoBehaviour
     public bool isKnocked()
     {
         return isBeingKnocked;
+    }
+
+    public void SetCanDig(bool canIDig)
+    {
+        canDig = canIDig; 
+    }
+
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 }

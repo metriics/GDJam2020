@@ -61,15 +61,12 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.name == player.name)
         {
-            Debug.Log("Test");
             GameEvents.current.EnemyAttack();
         }
 
         if(other.tag == "Attack Hitbox")
         {
-            Debug.Log("Help");
             isBeingKnocked = true;
         }
-        Debug.Log(other.tag);
     }
 }
