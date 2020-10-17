@@ -417,7 +417,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &386947675
@@ -435,7 +435,6 @@ MonoBehaviour:
   on: {fileID: -3108126605492527242, guid: 5396e3b79f6b6b847adaa0b799bd2062, type: 3}
   off: {fileID: -2799049323069089982, guid: 5396e3b79f6b6b847adaa0b799bd2062, type: 3}
   blinkDelay: 0.25
-  warmCollider: {fileID: 1251256214}
 --- !u!850595691 &403351218
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1422,13 +1421,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c88f2a68eeb3644ba0986aa64ac68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  metalScrapsSprite: {fileID: 21300000, guid: bf4b4d2672302ee4fbc9a0481ebd3b85, type: 3}
-  coinSprite: {fileID: 21300000, guid: a0f6a83aac6576140b5f9aebd5d1f9e6, type: 3}
-  weddingRingSprite: {fileID: 21300000, guid: 47dace1637cb46d4780a0770b58df66c, type: 3}
-  cellPhoneSprite: {fileID: 21300000, guid: 70b5ad90c3621ad49a3c818ca8e927a8, type: 3}
-  sunGlassesSprite: {fileID: 21300000, guid: aac7ca189fab6584aaf073c4a0abe0b2, type: 3}
-  necklaceSprite: {fileID: 21300000, guid: 0cf53fb9f40b3b8469bf83dba04cdfce, type: 3}
-  braceletSprite: {fileID: 21300000, guid: e6a968331ec485e4facb0dc089704dad, type: 3}
+  metalScrapsSprite: {fileID: 21300000, guid: 383fd6a32b30fcf4089d49dd9a42ecfc, type: 3}
+  coinSprite: {fileID: 21300000, guid: 99ef0e43b170ed94d82b94e44683b383, type: 3}
+  weddingRingSprite: {fileID: 21300000, guid: 0864b25cb2355e6468a928dd9e4b25b6, type: 3}
+  cellPhoneSprite: {fileID: 21300000, guid: 4cb891627a09120429cd3ce38c237cad, type: 3}
+  sunGlassesSprite: {fileID: 21300000, guid: 9d5f37e6113515b4a857b601a0f57cd4, type: 3}
+  necklaceSprite: {fileID: 21300000, guid: 78126773fafad5e43b1e11add15c7a0e, type: 3}
+  braceletSprite: {fileID: 21300000, guid: 9b5639776397b8e4a963628a09748d94, type: 3}
 --- !u!4 &1175221820
 Transform:
   m_ObjectHideFlags: 0
@@ -2292,6 +2291,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914815088}
   m_CullTransparentMesh: 0
+--- !u!1 &1932706909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1932706910}
+  - component: {fileID: 1932706912}
+  - component: {fileID: 1932706911}
+  m_Layer: 0
+  m_Name: HotCollider
+  m_TagString: HotCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1932706910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932706909}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 386947673}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1932706911
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932706909}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &1932706912
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932706909}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.15
+  m_Center: {x: 0.08, y: -0.3, z: 0}
 --- !u!1 &1964613147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,64 +2439,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1932706909
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1932706910}
-  - component: {fileID: 1932706912}
-  - component: {fileID: 1932706911}
-  m_Layer: 0
-  m_Name: HotCollider
-  m_TagString: HotCollider
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1932706910
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932706909}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 386947673}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1932706911
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932706909}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!135 &1932706912
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932706909}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.15
-  m_Center: {x: 0.08, y: -0.3, z: 0}
