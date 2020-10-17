@@ -26,7 +26,7 @@ public class LootManager : MonoBehaviour
         if (lootPool.Count < maxConcurrentLoot)
         {
             AddToPool(RandomizePosition(GetRandomLoot())); // we do it this way to avoid making unesessary empty gameobjects
-            Debug.Log(lootPool[lootPool.Count - 1].transform.position.ToString());
+            //Debug.Log(lootPool[lootPool.Count - 1].transform.position.ToString());
         }
     }
 

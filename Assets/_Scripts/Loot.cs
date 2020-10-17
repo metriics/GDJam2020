@@ -16,17 +16,17 @@ public class Loot : MonoBehaviour
         lootID = id;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) 
     {
-        Debug.Log("Enter");
-
+        Debug.Log(other.tag);
+        // check collider tag to ensure we only call this when detector collider triggers it
         GameEvents.current.WarmLoot();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Exit");
-
+        Debug.Log(other.tag);
+        // check collider tag to ensure we only call this when detector collider triggers it
         GameEvents.current.ColdLoot();
     }
 }
