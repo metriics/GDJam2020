@@ -918,6 +918,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95aba16bede6ed640be400cc9811f977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxConcurrentLoot: 15
+  beachWidth: 10
+  beachHeight: 5
+  scrapsPrefab: {fileID: 172140521633027775, guid: 7da53684752684940bb52c6ba57939a7,
+    type: 3}
+  coinPrefab: {fileID: 254315534236287403, guid: 7b493dc6e5c3b33419f48f006b50e549,
+    type: 3}
+  braceletPrefab: {fileID: 5143742747720244447, guid: 51db7b183635ce44e89bab31c573b4c8,
+    type: 3}
 --- !u!4 &1532980697
 Transform:
   m_ObjectHideFlags: 0

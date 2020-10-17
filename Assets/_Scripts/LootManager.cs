@@ -9,6 +9,11 @@ public class LootManager : MonoBehaviour
     public float beachWidth = 20.0f;
     public float beachHeight = 10.0f;
 
+    public GameObject scrapsPrefab;
+    public GameObject coinPrefab;
+    public GameObject braceletPrefab;
+
+
     void Start()
     {
         
@@ -32,18 +37,15 @@ public class LootManager : MonoBehaviour
         // Change spawn rates here
         if (chance <= 5.0f) // coin
         {
-            // return Instantiate(coin);
-            return new GameObject();
+            return Instantiate(coinPrefab);
         }
-        else if (chance <= 50.0f) // ???
+        else if (chance <= 15.0f) // ???
         {
-            // return Instantiate(???);
-            return new GameObject();
+            return Instantiate(braceletPrefab);
         }
         else // scraps
         {
-            // return Instantiate(scraps);
-            return new GameObject();
+            return Instantiate(scrapsPrefab);
         }
     }
 
