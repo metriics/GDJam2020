@@ -14,11 +14,12 @@ public class movement : MonoBehaviour
     bool isBeingKnocked = false;
     bool isFacingRight = true;
     bool isAttacking = false;
-    bool canDig = true;
+    bool canDig = false;
     bool isDigging = false;
     bool invUIOn = false;
     float knockbackTime = 0.0f;
     float attackTime = 0.0f;
+    Loot curItem;
 
     //Upgrades
     int digUpgrade = 1;
@@ -29,6 +30,7 @@ public class movement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         GameEvents.current.onEnemyAttack += Knockback;
+        GameEvents.current.onDugUp += OnDugUp;
         inventory = new Inventory();
         inventoryUI.SetInventory(inventory);
     }
@@ -45,10 +47,12 @@ public class movement : MonoBehaviour
         if (isFacingRight)
         {
             this.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            this.transform.Find("Dig").transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         }
         else
         {
             this.transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+            this.transform.Find("Dig").transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
         }
 
         if (isBeingKnocked)
@@ -144,5 +148,22 @@ public class movement : MonoBehaviour
     public Inventory GetInventory()
     {
         return inventory;
+    }
+
+    public void SetCurItem(Loot loot)
+    {
+        curItem = loot;
+    }
+
+    public Loot GetCurItem()
+    {
+        return curItem;
+    }
+
+    private void OnDugUp()
+    {
+        Inventory inv = this.GetComponent<movement>().GetInventory();
+        inv.AddLoot(Loot.GenerateLoot());
+        GameEvents.current.ColdLoot();
     }
 }

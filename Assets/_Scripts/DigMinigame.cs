@@ -60,6 +60,7 @@ public class DigMinigame : MonoBehaviour
                 player.GetComponent<movement>().SetIsDigging(false);
                 player.GetComponent<movement>().SetCanDig(false);
                 digUI.gameObject.SetActive(false);
+                GameEvents.current.DugUp();
             }
         }
     }

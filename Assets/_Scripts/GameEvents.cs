@@ -22,6 +22,7 @@ public class GameEvents : MonoBehaviour
     public event Action onHotLoot;
     public event Action onInvUpdate;
     public event Action onDig;
+    public event Action onDugUp;
 
     public void CubeTouched()
     {
@@ -91,6 +92,14 @@ public class GameEvents : MonoBehaviour
         if (onDig != null)
         {
             onDig();
+        }
+    }
+
+    public void DugUp()
+    {
+        if(onDugUp != null)
+        {
+            onDugUp();
         }
     }
 }

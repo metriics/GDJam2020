@@ -64,6 +64,7 @@ public class DetectorBehaviour : MonoBehaviour
     {
         Debug.Log("Cold");
         status = "off";
+        this.transform.parent.GetComponent<movement>().SetCanDig(false);
         recentStatusChange = true;
     }
 
@@ -71,6 +72,7 @@ public class DetectorBehaviour : MonoBehaviour
     {
         Debug.Log("Warm");
         status = "blink";
+        this.transform.parent.GetComponent<movement>().SetCanDig(false);
         recentStatusChange = true;
     }
 
@@ -78,6 +80,7 @@ public class DetectorBehaviour : MonoBehaviour
     {
         Debug.Log("Hot");
         status = "on";
+        this.transform.parent.GetComponent<movement>().SetCanDig(true);
         recentStatusChange = true;
     }
 }
