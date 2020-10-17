@@ -468,7 +468,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &596499274
 MonoBehaviour:
@@ -677,7 +677,7 @@ Transform:
   m_Children:
   - {fileID: 1190778810}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &948983507
 CharacterController:
@@ -921,6 +921,7 @@ MonoBehaviour:
   maxConcurrentLoot: 15
   beachWidth: 10
   beachHeight: 5
+  buryDepth: -2
   scrapsPrefab: {fileID: 172140521633027775, guid: 7da53684752684940bb52c6ba57939a7,
     type: 3}
   coinPrefab: {fileID: 254315534236287403, guid: 7b493dc6e5c3b33419f48f006b50e549,
@@ -939,7 +940,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1589375535
 GameObject:
