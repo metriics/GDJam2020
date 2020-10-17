@@ -9,17 +9,18 @@ public class DetectorBehaviour : MonoBehaviour
     public float blinkDelay = 0.25f;
 
     private float blinkTimer = 0.0f;
-    private Collider warmCollider;
+    public Collider warmCollider;
+    private float colliderRadius;
     private string status = "off";
     private bool recentStatusChange = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        warmCollider = GetComponent<SphereCollider>();
-
         GameEvents.current.onColdLoot += SetStatusOff;
         GameEvents.current.onWarmLoot += SetStatusBlinking;
+
+        colliderRadius = warmCollider.GetComponent<SphereCollider>().radius;
     }
 
     // Update is called once per frame
@@ -60,8 +61,10 @@ public class DetectorBehaviour : MonoBehaviour
                 blinkTimer = 0.0f;
             }
 
-            //// check if close to loot
-            //Collider[] hits = Physics.OverlapSphere(warmCollider.transform.TransformPoint(warmCollider.transform.localPosition), 0.15f);
+
+            // ---- why doesnt this work???
+            // check if close to loot, only include colliders on layer 9 (Loot layer)
+            //Collider[] hits = Physics.OverlapSphere(warmCollider.transform.position, colliderRadius/3, 9);
             //if (hits.Length > 0)
             //{
             //    SetStatusOn();

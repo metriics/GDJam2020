@@ -18,15 +18,17 @@ public class Loot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        Debug.Log(other.tag);
-        // check collider tag to ensure we only call this when detector collider triggers it
-        GameEvents.current.WarmLoot();
+        if (other.tag == "DetectorCollider")
+        {
+            GameEvents.current.WarmLoot();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log(other.tag);
-        // check collider tag to ensure we only call this when detector collider triggers it
-        GameEvents.current.ColdLoot();
+        if (other.tag == "DetectorCollider")
+        {
+            GameEvents.current.ColdLoot();
+        }
     }
 }

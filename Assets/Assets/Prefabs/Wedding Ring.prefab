@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1019040659708133512}
   - component: {fileID: 3316559450720630691}
   - component: {fileID: 883509676171090782}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wedding Ring
   m_TagString: Loot
   m_Icon: {fileID: 0}

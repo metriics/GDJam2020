@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7175164913754613362}
   - component: {fileID: 8167426283440963504}
   - component: {fileID: 7545371585499214632}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Necklace
   m_TagString: Loot
   m_Icon: {fileID: 0}

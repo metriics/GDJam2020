@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8306675478652074654}
   - component: {fileID: 6702411690036572151}
   - component: {fileID: 1831018145056590132}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sun Glasses
   m_TagString: Loot
   m_Icon: {fileID: 0}
