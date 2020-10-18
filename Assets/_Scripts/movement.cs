@@ -6,11 +6,12 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     private CharacterController controller;
+    public Animator animator;
     private Vector3 curMoveVector = new Vector3();
     [SerializeField] private InventoryUI inventoryUI;
     public float speed = 3.2f;
-    
 
+    GameObject detector;
     bool isBeingKnocked = false;
     bool isFacingRight = true;
     bool isAttacking = false;
@@ -30,6 +31,7 @@ public class movement : MonoBehaviour
 
     private void Start()
     {
+        detector = this.transform.GetChild(0).gameObject;
         controller = GetComponent<CharacterController>();
         GameEvents.current.onEnemyAttack += Knockback;
         GameEvents.current.onDugUp += OnDugUp;
@@ -72,6 +74,8 @@ public class movement : MonoBehaviour
             {
                 knockbackTime += Time.deltaTime;
                 digGame.Stop();
+                animator.SetBool("Digging", false);
+                detector.SetActive(true);
                 isDigging = false;
             }
         }
@@ -96,6 +100,16 @@ public class movement : MonoBehaviour
                 curMoveVector += new Vector3(1.0f, 0.0f);
                 isFacingRight = true;
             }
+
+            if (curMoveVector != new Vector3(0.0f, 0.0f, 0.0f))
+            {
+                animator.SetFloat("Speed", 1.0f);
+            }
+            else
+            {
+                animator.SetFloat("Speed", 0.0f);
+            }
+
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 isAttacking = true;
@@ -103,6 +117,8 @@ public class movement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && canDig && !DetectorBehaviour.IsBatteryDead())
             {
                 isDigging = true;
+                animator.SetBool("Digging", true);
+                detector.SetActive(false);
                 if (digGame != null)
                 {
                     digGame.SetState(true);
@@ -115,14 +131,18 @@ public class movement : MonoBehaviour
 
             if (isAttacking)
             {
+                animator.SetBool("Attacking", true);
+                detector.SetActive(false);
                 attackTime += Time.deltaTime;
-                transform.GetChild(0).gameObject.SetActive(true);
+                transform.GetChild(1).gameObject.SetActive(true);
 
-                if (attackTime >= 0.1)
+                if (attackTime >= 0.5f)
                 {
+                    animator.SetBool("Attacking", false);
+                    detector.SetActive(true);
                     isAttacking = false;
                     attackTime = 0.0f;
-                    transform.GetChild(0).gameObject.SetActive(false);
+                    transform.GetChild(1).gameObject.SetActive(false);
                 }
             }
         }
@@ -192,6 +212,8 @@ public class movement : MonoBehaviour
 
     private void OnDugUp()
     {
+        animator.SetBool("Digging", false);
+        detector.SetActive(true);
         //Will it spawn enemy? if yes return nothing
         float enemyChance = Random.Range(0.0f, 100.0f);
         if (enemyChance <= 50.0f)
@@ -212,6 +234,8 @@ public class movement : MonoBehaviour
                 Loot tempLoot = Loot.GenerateLoot();
                 inv.AddLoot(tempLoot);
             }
+            animator.SetBool("Pickup", true);
+            //detector.SetActive(false);
             GameEvents.current.ColdLoot();
         }
     }
