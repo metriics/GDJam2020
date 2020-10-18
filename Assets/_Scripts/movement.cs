@@ -20,6 +20,8 @@ public class movement : MonoBehaviour
     bool isDigging = false;
     bool invUIOn = false;
     float knockbackTime = 0.0f;
+    float pickupTime = 0.0f;
+    bool pickup = false;
     float attackTime = 0.0f;
     float damageMultiplier = 1.0f;
     Loot curItem;
@@ -78,6 +80,18 @@ public class movement : MonoBehaviour
                 animator.SetBool("Digging", false);
                 detector.SetActive(true);
                 isDigging = false;
+            }
+        }
+        else if (pickup)
+        {
+            pickupTime += Time.deltaTime;
+            if (pickupTime >= 1.0f)
+            {
+                animator.SetBool("Pickup", false);
+                pickup = false;
+                transform.GetChild(2).gameObject.SetActive(false);
+                pickupTime = 0.0f;
+                detector.SetActive(true);
             }
         }
         else if(!isDigging)
@@ -217,26 +231,31 @@ public class movement : MonoBehaviour
         detector.SetActive(true);
         //Will it spawn enemy? if yes return nothing
         float enemyChance = Random.Range(0.0f, 100.0f);
-        if (enemyChance <= 50.0f)
+        if (enemyChance <= 25.0f)
         {
             //spawn enemy
             GameEvents.current.EnemySpawn();
         }
         else
         {
+            Loot tempLoot;
             Inventory inv = inventory;
             if (!inv.IsLootInInventory(Loot.GiveQuestLoot(QuestManager.GetQuest().GetQuestLoot())))
             {
-                Loot tempLoot = Loot.GiveQuestLoot(QuestManager.GetQuest().GetQuestLoot());
+                tempLoot = Loot.GiveQuestLoot(QuestManager.GetQuest().GetQuestLoot());
                 inv.AddLoot(tempLoot);
             }
             else
             {
-                Loot tempLoot = Loot.GenerateLoot();
+                tempLoot = Loot.GenerateLoot();
                 inv.AddLoot(tempLoot);
             }
             animator.SetBool("Pickup", true);
-            //detector.SetActive(false);
+            pickup = true;
+            transform.GetChild(2).gameObject.SetActive(true);
+            transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = tempLoot.GetSprite();
+            pickupTime = 0.0f;
+            detector.SetActive(false);
             GameEvents.current.ColdLoot();
         }
     }

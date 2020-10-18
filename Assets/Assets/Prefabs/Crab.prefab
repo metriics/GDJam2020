@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   health: 1
-  playerKnockbackMultiplier: 1
+  playerKnockbackMultiplier: 10
   enemyKnockbackMultiplier: 5
 --- !u!65 &6105244542850145681
 BoxCollider:
