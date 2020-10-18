@@ -171,6 +171,14 @@ public class Shop : MonoBehaviour
         detector.GetComponent<DetectorBehaviour>().BatteryRefill();
     }
 
+    public void SellSheetMetal()
+    {
+        int set = player.GetComponent<movement>().GetInventory().CanSell() / 2;
+        if (set > 0)
+        {
+            player.GetComponent<movement>().GetInventory().AddLoot(new Loot { lootType = Loot.LootType.coin, amount = set });
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

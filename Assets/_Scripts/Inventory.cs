@@ -45,6 +45,38 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    public int CanSell()
+    {
+        int scraps = 0;
+        Loot invScraps = new Loot { lootType = Loot.LootType.metalScraps, amount = 1 };
+        foreach (Loot invLoot in lootList)
+        {
+            if (invLoot.lootType == Loot.LootType.metalScraps)
+            {
+                scraps += invLoot.amount;
+                invScraps = invLoot;
+            }
+        }
+
+        RemoveLoot(invScraps);
+
+        if (scraps >= 2)
+        {
+            int remainder = scraps % 2;
+
+            if (remainder == 1)
+            {
+                AddLoot(new Loot { lootType = Loot.LootType.metalScraps, amount = 1 });
+            }
+
+            return (scraps - remainder);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     public bool IsLootInInventory(Loot loot)
     {
         foreach (Loot invLoot in lootList)

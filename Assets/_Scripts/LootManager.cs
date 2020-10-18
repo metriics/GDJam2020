@@ -20,6 +20,8 @@ public class LootManager : MonoBehaviour
     public GameObject necklacePrefab;
     public GameObject braceletPrefab;
 
+    public GameObject digSite;
+
     public GameObject detector;
 
 
@@ -47,22 +49,24 @@ public class LootManager : MonoBehaviour
 
     private GameObject GetRandomLoot()
     {
-        float chance = Random.Range(0.0f, 100.0f);
+        //float chance = Random.Range(0.0f, 100.0f);
 
-        // ----LOOT TABLE----
-        // Change spawn rates here
-        if (chance <= 5.0f) // coin
-        {
-            return Instantiate(coinPrefab);
-        }
-        else if (chance <= 15.0f) // ???
-        {
-            return Instantiate(braceletPrefab);
-        }
-        else // scraps
-        {
-            return Instantiate(scrapsPrefab);
-        }
+        return Instantiate(digSite);
+
+        //// ----LOOT TABLE----
+        //// Change spawn rates here
+        //if (chance <= 5.0f) // coin
+        //{
+        //    return Instantiate(coinPrefab);
+        //}
+        //else if (chance <= 15.0f) // ???
+        //{
+        //    return Instantiate(braceletPrefab);
+        //}
+        //else // scraps
+        //{
+        //    return Instantiate(scrapsPrefab);
+        //}
     }
 
     private GameObject GetQuestLoot(Loot loot)
