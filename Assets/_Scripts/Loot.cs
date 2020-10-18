@@ -121,6 +121,8 @@ public class Loot : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("Exit Loot Trigger");
+
         if (other.tag == "WarmCollider")
         {
             GameEvents.current.ColdLoot();
