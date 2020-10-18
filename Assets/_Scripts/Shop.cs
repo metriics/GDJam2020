@@ -30,7 +30,7 @@ public class Shop : MonoBehaviour
 
         if (curLevel == 1)
         {
-            if (inventory.GetComponent<InventoryUI>().CanSpend(5))
+            if (player.GetComponent<movement>().GetInventory().CanSpend(5))
             {
                 player.gameObject.GetComponent<movement>().SetDigMultiplier(2);
             }
@@ -41,7 +41,7 @@ public class Shop : MonoBehaviour
         }
         else if (curLevel == 2)
         {
-            if (inventory.GetComponent<InventoryUI>().CanSpend(10))
+            if (player.GetComponent<movement>().GetInventory().CanSpend(10))
             {
                 player.gameObject.GetComponent<movement>().SetDigMultiplier(3);
             }
@@ -62,7 +62,7 @@ public class Shop : MonoBehaviour
         Debug.Log("detector upgrade");
         if (detectorRangeLevel == 1)
         {
-            if (inventory.GetComponent<InventoryUI>().CanSpend(5))
+            if (player.GetComponent<movement>().GetInventory().CanSpend(5))
             {
                 detector.GetComponent<DetectorBehaviour>().UpgradeRangeMultiplier(1.5f);
                 detectorRangeLevel = 2;
@@ -74,7 +74,7 @@ public class Shop : MonoBehaviour
         }
         else if (detectorRangeLevel == 2)
         {
-            if (inventory.GetComponent<InventoryUI>().CanSpend(10))
+            if (player.GetComponent<movement>().GetInventory().CanSpend(10))
             {
                 detector.GetComponent<DetectorBehaviour>().UpgradeRangeMultiplier(1.25f);
                 detectorRangeLevel = 3;

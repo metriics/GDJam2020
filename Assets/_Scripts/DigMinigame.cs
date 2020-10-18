@@ -16,7 +16,6 @@ public class DigMinigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        multiplier = 5 * player.GetComponent<movement>().GetDigMultiplier();
     }
 
     // Update is called once per frame
@@ -25,6 +24,7 @@ public class DigMinigame : MonoBehaviour
         Transform digUI = player.transform.Find("Dig").GetComponent<Transform>();
         if (active)
         {
+            multiplier = 5 * player.GetComponent<movement>().GetDigMultiplier();
             digUI.gameObject.SetActive(true);
 
             progress -= decreaseMultiplier * Time.deltaTime;

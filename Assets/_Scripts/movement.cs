@@ -33,6 +33,7 @@ public class movement : MonoBehaviour
         GameEvents.current.onDugUp += OnDugUp;
         inventory = new Inventory();
         inventoryUI.SetInventory(inventory);
+        inventory.AddLoot(new Loot { lootType = Loot.LootType.coin, amount = 100 });
     }
 
     // Update is called once per frame
@@ -143,6 +144,7 @@ public class movement : MonoBehaviour
 
     public int GetDigMultiplier()
     {
+        Debug.Log(digUpgrade);
         return digUpgrade;
     }
 
