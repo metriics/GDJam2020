@@ -15,6 +15,7 @@ public class movement : MonoBehaviour
     bool isFacingRight = true;
     bool isAttacking = false;
     bool canDig = false;
+    bool canHandIn = false;
     bool isDigging = false;
     bool invUIOn = false;
     float knockbackTime = 0.0f;
@@ -34,7 +35,10 @@ public class movement : MonoBehaviour
         GameEvents.current.onDugUp += OnDugUp;
         inventory = new Inventory();
         inventoryUI.SetInventory(inventory);
-        inventory.AddLoot(new Loot { lootType = Loot.LootType.coin, amount = 100 });
+        //inventory.AddLoot(new Loot { lootType = Loot.LootType.coin, amount = 100 });
+        inventory.AddLoot(new Loot { lootType = Loot.LootType.necklace, amount = 1 });
+        inventory.AddLoot(new Loot { lootType = Loot.LootType.bracelet, amount = 1 });
+        inventory.AddLoot(new Loot { lootType = Loot.LootType.weddingRing, amount = 1 });
     }
 
     // Update is called once per frame
@@ -96,14 +100,17 @@ public class movement : MonoBehaviour
             {
                 isAttacking = true;
             }
-            if (Input.GetKeyDown(KeyCode.E) && canDig)
+            if (Input.GetKeyDown(KeyCode.E) && canDig && !DetectorBehaviour.IsBatteryDead())
             {
                 isDigging = true;
                 if (digGame != null)
                 {
-                    Debug.Log("Start");
                     digGame.SetState(true);
                 }
+            }
+            if (Input.GetKeyDown(KeyCode.E) && canHandIn)
+            {
+                GameEvents.current.ItemHandIn();
             }
 
             if (isAttacking)
@@ -138,6 +145,11 @@ public class movement : MonoBehaviour
         canDig = canIDig; 
     }
 
+    public void SetCanHandIn(bool handIn)
+    {
+        canHandIn = handIn;
+    }
+
     public void SetIsDigging(bool digging)
     {
         isDigging = digging;
@@ -145,7 +157,6 @@ public class movement : MonoBehaviour
 
     public int GetDigMultiplier()
     {
-        Debug.Log(digUpgrade);
         return digUpgrade;
     }
 
@@ -190,10 +201,17 @@ public class movement : MonoBehaviour
         }
         else
         {
-            Inventory inv = this.GetComponent<movement>().GetInventory();
-            Loot tempLoot = Loot.GenerateLoot();
-            inv.AddLoot(tempLoot);
-            Debug.Log("Added " + tempLoot.lootType);
+            Inventory inv = inventory;
+            if (!inv.IsLootInInventory(Loot.GiveQuestLoot(QuestManager.GetQuest().GetQuestLoot())))
+            {
+                Loot tempLoot = Loot.GiveQuestLoot(QuestManager.GetQuest().GetQuestLoot());
+                inv.AddLoot(tempLoot);
+            }
+            else
+            {
+                Loot tempLoot = Loot.GenerateLoot();
+                inv.AddLoot(tempLoot);
+            }
             GameEvents.current.ColdLoot();
         }
     }

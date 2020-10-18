@@ -19,7 +19,12 @@ public class DetectorBehaviour : MonoBehaviour
     private float blinkTimer = 0.0f;
     private string status = "off";
     private bool recentStatusChange = false;
-    private bool deadBattery = false;
+    static private bool deadBattery = false;
+
+    static public bool IsBatteryDead()
+    {
+        return deadBattery;
+    }
 
     // Start is called before the first frame update
     void Start()

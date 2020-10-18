@@ -13,7 +13,6 @@ public class Inventory : MonoBehaviour
         //AddLoot(new Loot { lootType = Loot.LootType.metalScraps, amount = 25 });
         //AddLoot(new Loot { lootType = Loot.LootType.coin, amount = 100 });
         //AddLoot(new Loot { lootType = Loot.LootType.bracelet, amount = 1 });
-        Debug.Log("Inventory");
     }
 
 
@@ -46,6 +45,19 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    public bool IsLootInInventory(Loot loot)
+    {
+        foreach (Loot invLoot in lootList)
+        {
+            if (invLoot.lootType == loot.lootType)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void AddLoot(Loot loot)
     {
         if (loot.IsStackable())
@@ -74,19 +86,23 @@ public class Inventory : MonoBehaviour
 
     public void RemoveLoot(Loot loot)
     {
+        Loot lootInInv = null;
+        int removeRange = -1;
+        int stopRange = -1;
         foreach (Loot invLoot in lootList)
         {
+            removeRange++;
             if (invLoot.lootType == loot.lootType)
             {
-                if (invLoot.amount > loot.amount)
-                {
-                    invLoot.amount -= loot.amount;
-                }
-                else
-                {
-                    lootList.Remove(invLoot);
-                }
+                lootInInv = invLoot;
+                stopRange = removeRange;
+                invLoot.amount -= loot.amount;
             }
+        }
+        Debug.Log(lootInInv.lootType);
+        if (lootInInv.amount <= 0)
+        {
+            lootList.RemoveRange(stopRange, 1);
         }
         //GameEvents.current.InvUpdate();
     }

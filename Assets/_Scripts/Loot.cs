@@ -31,6 +31,68 @@ public class Loot : MonoBehaviour
         lootID = id;
     }
 
+    static public Loot GenerateQuestLoot()
+    {
+        Loot loot;
+
+        float chance = Random.Range(0.0f, 100.0f);
+
+        if (chance <= 5.0f) // coin
+        {
+            loot = new Loot { lootType = Loot.LootType.necklace, amount = 1 };
+        }
+        else if (chance <= 50.0f) // ???
+        {
+            loot = new Loot { lootType = Loot.LootType.bracelet, amount = 1 };
+        }
+        else // scraps
+        {
+            loot = new Loot { lootType = Loot.LootType.weddingRing, amount = 1 };
+        }
+
+        return loot;
+    }
+
+    static public Loot GiveQuestLoot(Loot qLoot)
+    {
+        Loot loot;
+
+        float chance = Random.Range(0.0f, 100.0f);
+
+        if (chance <= 50.0f) // returns quest loot
+        {
+            loot = qLoot;
+        }
+        else // returns other loot
+        {
+            loot = Loot.GenerateLoot();
+        }
+
+        return loot;
+    }
+
+    static public Loot GenerateRewardLoot()
+    {
+        Loot loot;
+
+        float chance = Random.Range(0.0f, 100.0f);
+
+        if (chance <= 5.0f) // coin
+        {
+            loot = new Loot { lootType = Loot.LootType.coin, amount = 50 };
+        }
+        else if (chance <= 15.0f) // ???
+        {
+            loot = new Loot { lootType = Loot.LootType.coin, amount = 25 };
+        }
+        else // scraps
+        {
+            loot = new Loot { lootType = Loot.LootType.coin, amount = 10 };
+        }
+
+        return loot;
+    }
+
     static public Loot GenerateLoot()
     {
         Loot loot;
