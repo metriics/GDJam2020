@@ -8,9 +8,18 @@ public class DetectorBehaviour : MonoBehaviour
     public Sprite off;
     public float blinkDelay = 0.25f;
 
+    public GameObject battery33;
+    public GameObject battery23;
+    public GameObject battery13;
+
+    private int batteryLevel = 3;
+    private float batteryDepletionSpeed = 30.0f;
+    private float batteryDepletionTimer = 0.0f;
+
     private float blinkTimer = 0.0f;
     private string status = "off";
     private bool recentStatusChange = false;
+    private bool deadBattery = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,45 +27,67 @@ public class DetectorBehaviour : MonoBehaviour
         GameEvents.current.onColdLoot += SetStatusOff;
         GameEvents.current.onWarmLoot += SetStatusBlinking;
         GameEvents.current.onHotLoot += SetStatusOn;
+
+        batteryDepletionTimer = batteryDepletionSpeed;
+        UpdateBatterySprite();
+        deadBattery = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (recentStatusChange)
+        if (batteryLevel > 0)
         {
-            if (status == "off")
+            if (recentStatusChange)
             {
-                GetComponent<SpriteRenderer>().sprite = off;
-            }
-            else if (status == "blink")
-            {
-                GetComponent<SpriteRenderer>().sprite = on;
-                blinkTimer = 0.0f;
-            }
-            else if (status == "on")
-            {
-                GetComponent<SpriteRenderer>().sprite = on;
+                if (status == "off")
+                {
+                    GetComponent<SpriteRenderer>().sprite = off;
+                }
+                else if (status == "blink")
+                {
+                    GetComponent<SpriteRenderer>().sprite = on;
+                    blinkTimer = 0.0f;
+                }
+                else if (status == "on")
+                {
+                    GetComponent<SpriteRenderer>().sprite = on;
+                }
+
+                recentStatusChange = false;
             }
 
-            recentStatusChange = false;
+            if (status == "blink")
+            {
+                blinkTimer += Time.deltaTime;
+                if (blinkTimer < blinkDelay)
+                {
+                    GetComponent<SpriteRenderer>().sprite = on;
+                }
+                else if (blinkTimer > blinkDelay && blinkTimer < blinkDelay * 2)
+                {
+                    GetComponent<SpriteRenderer>().sprite = off;
+                }
+                else
+                {
+                    blinkTimer = 0.0f;
+                }
+            }
+
+            batteryDepletionTimer -= Time.deltaTime;
+            if (batteryDepletionTimer <= 0.0f)
+            {
+                batteryLevel -= 1;
+                batteryDepletionTimer = batteryDepletionSpeed;
+                UpdateBatterySprite();
+                Debug.Log(batteryLevel);
+            }
         }
-
-        if (status == "blink")
+        
+        else
         {
-            blinkTimer += Time.deltaTime;
-            if (blinkTimer < blinkDelay)
-            {
-                GetComponent<SpriteRenderer>().sprite = on;
-            }
-            else if (blinkTimer > blinkDelay && blinkTimer < blinkDelay * 2)
-            {
-                GetComponent<SpriteRenderer>().sprite = off;
-            }
-            else
-            {
-                blinkTimer = 0.0f;
-            }
+            deadBattery = true;
+            GetComponent<SpriteRenderer>().sprite = off;
         }
     }
 
@@ -68,6 +99,51 @@ public class DetectorBehaviour : MonoBehaviour
         {
             collider.radius = collider.radius * newMultiplier;
         }
+    }
+
+    private void UpdateBatterySprite()
+    {
+        if (batteryLevel == 3)
+        {
+            battery33.SetActive(true);
+            battery23.SetActive(false);
+            battery13.SetActive(false);
+        }
+        else if (batteryLevel == 2)
+        {
+            battery33.SetActive(false);
+            battery23.SetActive(true);
+            battery13.SetActive(false);
+        }
+        else if (batteryLevel == 1)
+        {
+            battery33.SetActive(false);
+            battery23.SetActive(false);
+            battery13.SetActive(true);
+        }
+        else if (batteryLevel == 0)
+        {
+            battery33.SetActive(false);
+            battery23.SetActive(false);
+            battery13.SetActive(false);
+        }
+    }
+
+    public void SetBatteryDepletionSpeed(float speed)
+    {
+        batteryDepletionSpeed = speed;
+        UpdateBatterySprite();
+    }
+
+    public float GetBatteryDepletionSpeed()
+    {
+        return batteryDepletionSpeed;
+    }
+
+    public void BatteryRefill()
+    {
+        batteryLevel = 3;
+        UpdateBatterySprite();
     }
 
     private void SetStatusOff()
@@ -92,5 +168,10 @@ public class DetectorBehaviour : MonoBehaviour
         status = "on";
         this.transform.parent.GetComponent<movement>().SetCanDig(true);
         recentStatusChange = true;
+    }
+
+    public string GetStatus()
+    {
+        return status;
     }
 }

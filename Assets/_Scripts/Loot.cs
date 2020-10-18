@@ -160,7 +160,7 @@ public class Loot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "WarmCollider")
+        if (other.tag == "WarmCollider" && !transform.parent.gameObject.GetComponent<LootManager>().DetectorStatusOn())
         {
             GameEvents.current.WarmLoot();
         }
