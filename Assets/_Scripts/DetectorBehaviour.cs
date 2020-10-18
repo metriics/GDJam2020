@@ -169,4 +169,9 @@ public class DetectorBehaviour : MonoBehaviour
         this.transform.parent.GetComponent<movement>().SetCanDig(true);
         recentStatusChange = true;
     }
+
+    public string GetStatus()
+    {
+        return status;
+    }
 }

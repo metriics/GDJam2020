@@ -16,6 +16,8 @@ public class LootManager : MonoBehaviour
     public GameObject coinPrefab;
     public GameObject braceletPrefab;
 
+    public GameObject detector;
+
 
     void Start()
     {
@@ -88,6 +90,20 @@ public class LootManager : MonoBehaviour
         else
         {
             AddToPool(RandomizePosition(obj));
+        }
+    }
+
+    public bool DetectorStatusOn()
+    {
+        string status = detector.GetComponent<DetectorBehaviour>().GetStatus();
+        
+        if (status == "on")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
