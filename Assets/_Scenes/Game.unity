@@ -2889,6 +2889,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopUI: {fileID: 394844000}
+  player: {fileID: 948983503}
+  inventory: {fileID: 536135904}
+  detector: {fileID: 386947672}
 --- !u!65 &1313602576
 BoxCollider:
   m_ObjectHideFlags: 0

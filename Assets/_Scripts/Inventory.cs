@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour
         Debug.Log("Inventory");
     }
 
+
     public int GetNumCoins()
     {
         int coins = 0;

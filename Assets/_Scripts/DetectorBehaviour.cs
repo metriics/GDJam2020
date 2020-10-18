@@ -60,6 +60,16 @@ public class DetectorBehaviour : MonoBehaviour
         }
     }
 
+    public void UpgradeRangeMultiplier(float newMultiplier)
+    {
+        SphereCollider[] detectorRanges = GetComponentsInChildren<SphereCollider>();
+        Debug.Log(detectorRanges.Length);
+        foreach (SphereCollider collider in detectorRanges)
+        {
+            collider.radius = collider.radius * newMultiplier;
+        }
+    }
+
     private void SetStatusOff()
     {
         //Debug.Log("Cold");

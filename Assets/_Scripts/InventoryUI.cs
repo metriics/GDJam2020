@@ -25,6 +25,13 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         //GameEvents.current.onInvUpdate += RefreshInventoryItems;
+        // TODO: remove this
+        inventory.AddLoot(new Loot { lootType = Loot.LootType.coin, amount = 100 });
+    }
+
+    public bool CanSpend(int amount)
+    {
+        return inventory.CanSpend(amount);
     }
 
     private void RefreshInventoryItems()

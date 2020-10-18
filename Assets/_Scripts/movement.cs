@@ -145,6 +145,12 @@ public class movement : MonoBehaviour
     {
         return digUpgrade;
     }
+
+    public void SetDigMultiplier(int mult)
+    {
+        digUpgrade = mult;
+    }
+
     public Inventory GetInventory()
     {
         return inventory;
