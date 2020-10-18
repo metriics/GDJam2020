@@ -146,6 +146,7 @@ public class movement : MonoBehaviour
                 detector.SetActive(false);
                 attackTime += Time.deltaTime;
                 transform.GetChild(1).gameObject.SetActive(true);
+                SoundManager.playSound("hit");
 
                 if (attackTime >= 0.5f)
                 {

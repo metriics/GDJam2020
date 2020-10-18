@@ -65,6 +65,7 @@ public class DetectorBehaviour : MonoBehaviour
 
             if (status == "blink")
             {
+                SoundManager.playSound("beep");
                 blinkTimer += Time.deltaTime;
                 if (blinkTimer < blinkDelay)
                 {
@@ -92,6 +93,7 @@ public class DetectorBehaviour : MonoBehaviour
         
         else
         {
+            SoundManager.playSound("lowBattery");
             deadBattery = true;
             GetComponent<SpriteRenderer>().sprite = off;
         }

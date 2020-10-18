@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip hit1, hit2, hit3, hit4, lowBattery, beep;
+    public static AudioClip hit1, lowBattery, beep;
     static AudioSource audioSrc;
 
     void Start()
     {
         hit1 = Resources.Load<AudioClip>("Hit1");
-        hit2 = Resources.Load<AudioClip>("Hit2");
-        hit3 = Resources.Load<AudioClip>("Hit3");
-        hit4 = Resources.Load<AudioClip>("Hit4");
         lowBattery = Resources.Load<AudioClip>("Low_Battery");
         beep = Resources.Load<AudioClip>("Detector_Beep");
 
@@ -29,20 +26,7 @@ public class SoundManager : MonoBehaviour
                 audioSrc.PlayOneShot(lowBattery);
                 break;
             case "hit":
-                switch (Random.Range(1, 4)) {
-                    case 1:
-                        audioSrc.PlayOneShot(hit1);
-                        break;
-                    case 2:
-                        audioSrc.PlayOneShot(hit2);
-                        break;
-                    case 3:
-                        audioSrc.PlayOneShot(hit3);
-                        break;
-                    case 4:
-                        audioSrc.PlayOneShot(hit4);
-                        break;
-                }
+                audioSrc.PlayOneShot(hit1);
                 break;
         }
 
