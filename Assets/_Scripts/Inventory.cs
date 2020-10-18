@@ -16,6 +16,35 @@ public class Inventory : MonoBehaviour
         Debug.Log("Inventory");
     }
 
+    public int GetNumCoins()
+    {
+        int coins = 0;
+        foreach (Loot invLoot in lootList)
+        {
+            if (invLoot.lootType == Loot.LootType.coin)
+            {
+                coins++;
+            }
+        }
+        return coins;
+    }
+
+    public bool CanSpend(int amount)
+    {
+        foreach (Loot invLoot in lootList)
+        {
+            if (invLoot.lootType == Loot.LootType.coin)
+            {
+                if (invLoot.amount >= amount) // if there is enough money, spend it
+                {
+                    invLoot.amount -= amount;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void AddLoot(Loot loot)
     {
         if (loot.IsStackable())
