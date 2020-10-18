@@ -162,8 +162,20 @@ public class movement : MonoBehaviour
 
     private void OnDugUp()
     {
-        Inventory inv = this.GetComponent<movement>().GetInventory();
-        inv.AddLoot(Loot.GenerateLoot());
-        GameEvents.current.ColdLoot();
+        //Will it spawn enemy? if yes return nothing
+        float enemyChance = Random.Range(0.0f, 100.0f);
+        if (enemyChance <= 50.0f)
+        {
+            //spawn enemy
+            GameEvents.current.EnemySpawn();
+        }
+        else
+        {
+            Inventory inv = this.GetComponent<movement>().GetInventory();
+            Loot tempLoot = Loot.GenerateLoot();
+            inv.AddLoot(tempLoot);
+            Debug.Log("Added " + tempLoot.lootType);
+            GameEvents.current.ColdLoot();
+        }
     }
 }
