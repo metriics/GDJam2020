@@ -3492,6 +3492,10 @@ MonoBehaviour:
     type: 3}
   coinPrefab: {fileID: 254315534236287403, guid: 7b493dc6e5c3b33419f48f006b50e549,
     type: 3}
+  weddingRingPrefab: {fileID: 0}
+  cellPhonePrefab: {fileID: 0}
+  sunGlassesPrefab: {fileID: 0}
+  necklacePrefab: {fileID: 0}
   braceletPrefab: {fileID: 5143742747720244447, guid: 51db7b183635ce44e89bab31c573b4c8,
     type: 3}
   detector: {fileID: 386947672}

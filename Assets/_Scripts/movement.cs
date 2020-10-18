@@ -100,7 +100,7 @@ public class movement : MonoBehaviour
             {
                 isAttacking = true;
             }
-            if (Input.GetKeyDown(KeyCode.E) && canDig)
+            if (Input.GetKeyDown(KeyCode.E) && canDig && !DetectorBehaviour.IsBatteryDead())
             {
                 isDigging = true;
                 if (digGame != null)
