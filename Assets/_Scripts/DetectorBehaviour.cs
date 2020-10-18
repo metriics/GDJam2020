@@ -85,7 +85,7 @@ public class DetectorBehaviour : MonoBehaviour
                 batteryLevel -= 1;
                 batteryDepletionTimer = batteryDepletionSpeed;
                 UpdateBatterySprite();
-                Debug.Log(batteryLevel);
+                //Debug.Log(batteryLevel);
             }
         }
         
