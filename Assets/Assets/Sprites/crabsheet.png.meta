@@ -1,13 +1,67 @@
 fileFormatVersion: 2
-guid: 7a71848c555cdd64a9b2bcb1cddf00a8
+guid: 0e09642f9ffe14b4b9492188b571b127
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3747135234590077896
-    second: off
+      213: -7429220902316276719
+    second: crabsheet_0
   - first:
-      213: 652631496140175218
-    second: on
+      213: 6239087970315931608
+    second: crabsheet_1
+  - first:
+      213: 6223244533620220810
+    second: crabsheet_2
+  - first:
+      213: 4635211300499295462
+    second: crabsheet_3
+  - first:
+      213: -8420133620438167149
+    second: crabsheet_4
+  - first:
+      213: -3663773940623188721
+    second: crabsheet_5
+  - first:
+      213: 8781764863740567149
+    second: crabsheet_6
+  - first:
+      213: -2627838825195800297
+    second: crabsheet_7
+  - first:
+      213: 1609719850606147211
+    second: crabsheet_8
+  - first:
+      213: 5347588320929005826
+    second: crabsheet_9
+  - first:
+      213: -5501430319161836766
+    second: crabsheet_10
+  - first:
+      213: 152623264770526948
+    second: crabsheet_11
+  - first:
+      213: 7861864455829599156
+    second: crabsheet_12
+  - first:
+      213: -8446416714801832160
+    second: crabsheet_13
+  - first:
+      213: 6331043644911242808
+    second: crabsheet_14
+  - first:
+      213: -2356910792435473757
+    second: crabsheet_15
+  - first:
+      213: -4024506353977466826
+    second: crabsheet_16
+  - first:
+      213: 8444528115087045681
+    second: crabsheet_17
+  - first:
+      213: 4065601880254483833
+    second: crabsheet_18
+  - first:
+      213: 7808648764996176156
+    second: crabsheet_19
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -43,7 +97,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -65,14 +119,14 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -84,7 +138,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,43 +149,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: off
+      name: crabsheet_0
       rect:
         serializedVersion: 2
-        x: 65
-        y: 40
-        width: 50
-        height: 75
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c3771784af700430800000000000000
-      internalID: 3747135234590077896
+      spriteID: 114088773fa16e890800000000000000
+      internalID: -7429220902316276719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: on
+      name: crabsheet_1
       rect:
         serializedVersion: 2
-        x: 225
-        y: 40
-        width: 50
-        height: 75
+        x: 160
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 277baa053ec9e0900800000000000000
-      internalID: 652631496140175218
+      spriteID: 8df0811f371b59650800000000000000
+      internalID: 6239087970315931608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crabsheet_2
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8323d06ee76d5650800000000000000
+      internalID: 6223244533620220810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crabsheet_3
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec03219e14935040800000000000000
+      internalID: 4635211300499295462
       vertices: []
       indices: 
       edges: []

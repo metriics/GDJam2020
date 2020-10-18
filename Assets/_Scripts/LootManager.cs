@@ -6,9 +6,11 @@ using UnityEngine;
 public class LootManager : MonoBehaviour
 {
     List<GameObject> lootPool = new List<GameObject>();
-    public int maxConcurrentLoot = 15;
-    public float beachWidth = 20.0f;
-    public float beachHeight = 10.0f;
+    public int maxConcurrentLoot = 100;
+    public float minWidth = -10.0f;
+    public float maxWidth = 58.0f;
+    public float maxHeight = 4.6f;
+    public float minHeight = -4.2f;
 
     public GameObject scrapsPrefab;
     public GameObject coinPrefab;
@@ -17,7 +19,7 @@ public class LootManager : MonoBehaviour
 
     void Start()
     {
-        
+        GameEvents.current.onDugUp += DeleteDug;
     }
 
     // Update is called once per frame
@@ -53,8 +55,8 @@ public class LootManager : MonoBehaviour
     private GameObject RandomizePosition(GameObject loot)
     {
         Vector3 randPos = new Vector3();
-        randPos.x = Random.Range(-beachWidth, beachWidth);
-        randPos.y = Random.Range(-beachHeight, beachHeight);
+        randPos.x = Random.Range(minWidth, maxWidth);
+        randPos.y = Random.Range(minHeight, maxHeight);
         loot.transform.position = randPos;
         return loot;
     }
@@ -86,6 +88,25 @@ public class LootManager : MonoBehaviour
         else
         {
             AddToPool(RandomizePosition(obj));
+        }
+    }
+
+    private void DeleteDug()
+    {
+        List<GameObject> tempList = new List<GameObject>();
+
+        foreach (GameObject loot in lootPool)
+        {
+            if (loot.GetComponent<Loot>().amIHot())
+            {
+                tempList.Add(loot);
+            }
+        }
+
+        foreach(GameObject loot in tempList)
+        {
+            lootPool.Remove(loot);
+            loot.GetComponent<Loot>().DestroySelf();
         }
     }
 }

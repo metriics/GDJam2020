@@ -5,8 +5,9 @@ using UnityEngine.Events;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public GameObject player;
+    GameObject player;
     public float speed = 1;
+    public int health = 10;
     public int playerKnockbackMultiplier = 2;
     public int enemyKnockbackMultiplier = 2;
 
@@ -18,12 +19,18 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = this.transform.parent.GetComponent<SpawnEnemy>().player;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(health <= 0)
+        {
+            //Die
+
+        }
+
         if (isBeingKnocked)
         {
             if (knockTimer >= 0.5f)
@@ -67,6 +74,7 @@ public class EnemyBehaviour : MonoBehaviour
         if(other.tag == "Attack Hitbox")
         {
             isBeingKnocked = true;
+            health--;
         }
     }
 }

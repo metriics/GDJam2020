@@ -15,15 +15,22 @@ public class movement : MonoBehaviour
     bool isFacingRight = true;
     bool isAttacking = false;
     bool canDig = false;
+    bool isDigging = false;
     bool invUIOn = false;
     float knockbackTime = 0.0f;
     float attackTime = 0.0f;
+    Loot curItem;
+
+    //Upgrades
+    int digUpgrade = 1;
     Inventory inventory;
+    public DigMinigame digGame;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         GameEvents.current.onEnemyAttack += Knockback;
+        GameEvents.current.onDugUp += OnDugUp;
         inventory = new Inventory();
         inventoryUI.SetInventory(inventory);
     }
@@ -40,10 +47,12 @@ public class movement : MonoBehaviour
         if (isFacingRight)
         {
             this.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            this.transform.Find("Dig").transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         }
         else
         {
             this.transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+            this.transform.Find("Dig").transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
         }
 
         if (isBeingKnocked)
@@ -56,9 +65,11 @@ public class movement : MonoBehaviour
             else
             {
                 knockbackTime += Time.deltaTime;
+                digGame.Stop();
+                isDigging = false;
             }
         }
-        else
+        else if(!isDigging)
         {
             curMoveVector = new Vector3();
             if (Input.GetKey(KeyCode.W))
@@ -82,6 +93,15 @@ public class movement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 isAttacking = true;
+            }
+            if (Input.GetKeyDown(KeyCode.E) && canDig)
+            {
+                isDigging = true;
+                if (digGame != null)
+                {
+                    Debug.Log("Start");
+                    digGame.SetState(true);
+                }
             }
 
             if (isAttacking)
@@ -116,8 +136,46 @@ public class movement : MonoBehaviour
         canDig = canIDig; 
     }
 
+    public void SetIsDigging(bool digging)
+    {
+        isDigging = digging;
+    }
+
+    public int GetDigMultiplier()
+    {
+        return digUpgrade;
+    }
     public Inventory GetInventory()
     {
         return inventory;
+    }
+
+    public void SetCurItem(Loot loot)
+    {
+        curItem = loot;
+    }
+
+    public Loot GetCurItem()
+    {
+        return curItem;
+    }
+
+    private void OnDugUp()
+    {
+        //Will it spawn enemy? if yes return nothing
+        float enemyChance = Random.Range(0.0f, 100.0f);
+        if (enemyChance <= 50.0f)
+        {
+            //spawn enemy
+            GameEvents.current.EnemySpawn();
+        }
+        else
+        {
+            Inventory inv = this.GetComponent<movement>().GetInventory();
+            Loot tempLoot = Loot.GenerateLoot();
+            inv.AddLoot(tempLoot);
+            Debug.Log("Added " + tempLoot.lootType);
+            GameEvents.current.ColdLoot();
+        }
     }
 }

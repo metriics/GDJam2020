@@ -17,6 +17,7 @@ public class Loot : MonoBehaviour
 
     public LootType lootType;
     public int amount;
+    bool isHot = false;
 
     private int lootID = -1;
 
@@ -30,6 +31,27 @@ public class Loot : MonoBehaviour
         lootID = id;
     }
 
+    static public Loot GenerateLoot()
+    {
+        Loot loot;
+
+        float chance = Random.Range(0.0f, 100.0f);
+
+        if (chance <= 5.0f) // coin
+        {
+            loot = new Loot { lootType = Loot.LootType.coin, amount = 1 };
+        }
+        else if (chance <= 15.0f) // ???
+        {
+            loot = new Loot { lootType = Loot.LootType.bracelet, amount = 1 };
+        }
+        else // scraps
+        {
+            loot = new Loot { lootType = Loot.LootType.metalScraps, amount = 1 };
+        }
+
+        return loot;
+    }
     public Sprite GetSprite()
     {
         switch (lootType)
@@ -84,18 +106,16 @@ public class Loot : MonoBehaviour
         if (other.tag == "HotCollider")
         {
             GameEvents.current.HotLoot();
+            SpawnEnemy.SetPosition(this.transform.position);
+            isHot = true;
         }
 
 
         // TODO: replace this with digging action elsewhere
         if(other.tag == "Player")
         {
-            Debug.Log("Testing");
-            Inventory inv = other.gameObject.GetComponent<movement>().GetInventory();
-            inv.AddLoot(this);
-            Debug.Log("Added: " + this.lootType);
-            //DestroySelf();
-            GameEvents.current.ColdLoot();
+            Debug.Log("Updated curItem");
+            other.gameObject.GetComponent<movement>().SetCurItem(this);
         }
     }
 
@@ -104,14 +124,20 @@ public class Loot : MonoBehaviour
         if (other.tag == "WarmCollider")
         {
             GameEvents.current.ColdLoot();
+            isHot = false;
         }
 
         if (other.tag == "HotCollider")
         {
             GameEvents.current.WarmLoot();
+            isHot = false;
         }
     }
 
+    public bool amIHot()
+    {
+        return isHot;
+    }
     public void DestroySelf()
     {
         Destroy(gameObject);
