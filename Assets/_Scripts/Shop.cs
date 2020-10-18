@@ -11,6 +11,14 @@ public class Shop : MonoBehaviour
 
     private int detectorRangeLevel = 1;
 
+    private float damageLvl1 = 1.0f;
+    private float damageLvl2 = 1.25f;
+    private float damageLvl3 = 1.5f;
+
+    private float batteryLvl1 = 30.0f;
+    private float batteryLvl2 = 35.0f;
+    private float batteryLvl3 = 40.0f;
+
     void Start()
     {
         shopUI.gameObject.SetActive(false);
@@ -64,7 +72,7 @@ public class Shop : MonoBehaviour
         {
             if (player.GetComponent<movement>().GetInventory().CanSpend(5))
             {
-                detector.GetComponent<DetectorBehaviour>().UpgradeRangeMultiplier(1.5f);
+                detector.GetComponent<DetectorBehaviour>().UpgradeRangeMultiplier(1.25f);
                 detectorRangeLevel = 2;
             }
             else
@@ -76,7 +84,7 @@ public class Shop : MonoBehaviour
         {
             if (player.GetComponent<movement>().GetInventory().CanSpend(10))
             {
-                detector.GetComponent<DetectorBehaviour>().UpgradeRangeMultiplier(1.25f);
+                detector.GetComponent<DetectorBehaviour>().UpgradeRangeMultiplier(1.5f);
                 detectorRangeLevel = 3;
             }
             else
@@ -94,11 +102,71 @@ public class Shop : MonoBehaviour
     public void UpgradeDamage()
     {
         Debug.Log("damage upgrade");
+
+        float curLevel = player.gameObject.GetComponent<movement>().GetDamageMultiplier();
+
+        if (curLevel == damageLvl1)
+        {
+            if (player.GetComponent<movement>().GetInventory().CanSpend(5))
+            {
+                player.gameObject.GetComponent<movement>().SetDamageMultiplier(damageLvl2);
+            }
+            else
+            {
+                Debug.Log("Not enough money");
+            }
+        }
+        else if (curLevel == damageLvl2)
+        {
+            if (player.GetComponent<movement>().GetInventory().CanSpend(10))
+            {
+                player.gameObject.GetComponent<movement>().SetDamageMultiplier(damageLvl3);
+            }
+            else
+            {
+                Debug.Log("Not enough money");
+            }
+        }
+        else if (curLevel == damageLvl3)
+        {
+            // cant upgrade past 3
+            Debug.Log("Can't upgrade past level 3");
+        }
     }
 
     public void UpgradeBattery()
     {
         Debug.Log("battery upgrade");
+
+        float curSpeed = detector.GetComponent<DetectorBehaviour>().GetBatteryDepletionSpeed();
+
+        if (curSpeed == batteryLvl1)
+        {
+            if (player.GetComponent<movement>().GetInventory().CanSpend(5))
+            {
+                detector.GetComponent<DetectorBehaviour>().SetBatteryDepletionSpeed(batteryLvl2);
+            }
+            else
+            {
+                Debug.Log("Not enough money");
+            }
+        }
+        else if (curSpeed == batteryLvl2)
+        {
+            if (player.GetComponent<movement>().GetInventory().CanSpend(10))
+            {
+                detector.GetComponent<DetectorBehaviour>().SetBatteryDepletionSpeed(batteryLvl3);
+            }
+            else
+            {
+                Debug.Log("Not enough money");
+            }
+        }
+        else if (curSpeed == batteryLvl3)
+        {
+            // cant upgrade past 3
+            Debug.Log("Can't upgrade past level 3");
+        }
     }
 
 

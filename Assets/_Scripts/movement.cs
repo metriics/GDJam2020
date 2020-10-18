@@ -19,6 +19,7 @@ public class movement : MonoBehaviour
     bool invUIOn = false;
     float knockbackTime = 0.0f;
     float attackTime = 0.0f;
+    float damageMultiplier = 1.0f;
     Loot curItem;
 
     //Upgrades
@@ -166,6 +167,16 @@ public class movement : MonoBehaviour
     public Loot GetCurItem()
     {
         return curItem;
+    }
+
+    public void SetDamageMultiplier(float mult)
+    {
+        damageMultiplier = mult;
+    }
+
+    public float GetDamageMultiplier()
+    {
+        return damageMultiplier;
     }
 
     private void OnDugUp()
