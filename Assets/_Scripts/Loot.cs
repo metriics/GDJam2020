@@ -37,13 +37,21 @@ public class Loot : MonoBehaviour
 
         float chance = Random.Range(0.0f, 100.0f);
 
-        if (chance <= 5.0f) // coin
+        if (chance <= 20.0f) // coin
         {
             loot = new Loot { lootType = Loot.LootType.necklace, amount = 1 };
         }
-        else if (chance <= 50.0f) // ???
+        else if (chance <= 40.0f) // ???
         {
             loot = new Loot { lootType = Loot.LootType.bracelet, amount = 1 };
+        }
+        else if (chance <= 60.0f) // ???
+        {
+            loot = new Loot { lootType = Loot.LootType.cellPhone, amount = 1 };
+        }
+        else if (chance <= 80.0f) // ???
+        {
+            loot = new Loot { lootType = Loot.LootType.sunGlasses, amount = 1 };
         }
         else // scraps
         {
@@ -55,20 +63,20 @@ public class Loot : MonoBehaviour
 
     static public Loot GiveQuestLoot(Loot qLoot)
     {
-        Loot loot;
-
-        float chance = Random.Range(0.0f, 100.0f);
-
-        if (chance <= 50.0f) // returns quest loot
+        switch (qLoot.lootType)
         {
-            loot = qLoot;
+            default:
+            case LootType.weddingRing:
+                return new Loot { lootType = LootType.coin, amount = 10 };
+            case LootType.cellPhone:
+                return new Loot { lootType = LootType.coin, amount = 8 };
+            case LootType.necklace:
+                return new Loot { lootType = LootType.coin, amount = 4 };
+            case LootType.sunGlasses:
+                return new Loot { lootType = LootType.coin, amount = 2 };
+            case LootType.bracelet:
+                return new Loot { lootType = LootType.coin, amount = 1 };
         }
-        else // returns other loot
-        {
-            loot = Loot.GenerateLoot();
-        }
-
-        return loot;
     }
 
     static public Loot GenerateRewardLoot()
@@ -102,10 +110,6 @@ public class Loot : MonoBehaviour
         if (chance <= 5.0f) // coin
         {
             loot = new Loot { lootType = Loot.LootType.coin, amount = 1 };
-        }
-        else if (chance <= 15.0f) // ???
-        {
-            loot = new Loot { lootType = Loot.LootType.bracelet, amount = 1 };
         }
         else // scraps
         {
