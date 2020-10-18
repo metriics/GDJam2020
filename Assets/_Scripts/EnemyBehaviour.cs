@@ -28,7 +28,7 @@ public class EnemyBehaviour : MonoBehaviour
         if(health <= 0)
         {
             //Die
-
+            Destroy(this.gameObject);
         }
 
         if (isBeingKnocked)
