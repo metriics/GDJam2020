@@ -24,6 +24,7 @@ public class GameEvents : MonoBehaviour
     public event Action onDig;
     public event Action onDugUp;
     public event Action onEnemySpawn;
+    public event Action onItemHandIn;
 
     public void CubeTouched()
     {
@@ -109,6 +110,14 @@ public class GameEvents : MonoBehaviour
         if(onEnemySpawn != null)
         {
             onEnemySpawn();
+        }
+    }
+
+    public void ItemHandIn()
+    {
+        if(onItemHandIn != null)
+        {
+            onItemHandIn();
         }
     }
 }

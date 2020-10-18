@@ -14,6 +14,10 @@ public class LootManager : MonoBehaviour
 
     public GameObject scrapsPrefab;
     public GameObject coinPrefab;
+    public GameObject weddingRingPrefab;
+    public GameObject cellPhonePrefab;
+    public GameObject sunGlassesPrefab;
+    public GameObject necklacePrefab;
     public GameObject braceletPrefab;
 
 
@@ -27,8 +31,15 @@ public class LootManager : MonoBehaviour
     {
         if (lootPool.Count < maxConcurrentLoot)
         {
-            AddToPool(RandomizePosition(GetRandomLoot())); // we do it this way to avoid making unesessary empty gameobjects
-            //Debug.Log(lootPool[lootPool.Count - 1].transform.position.ToString());
+            if (QuestManager.GetQuest().IsSpawned())
+            {
+                AddToPool(RandomizePosition(GetRandomLoot())); // we do it this way to avoid making unesessary empty gameobjects
+                //Debug.Log(lootPool[lootPool.Count - 1].transform.position.ToString());
+            }
+            else
+            {
+                AddToPool(RandomizePosition(GetRandomLoot()));
+            }
         }
     }
 
@@ -49,6 +60,24 @@ public class LootManager : MonoBehaviour
         else // scraps
         {
             return Instantiate(scrapsPrefab);
+        }
+    }
+
+    private GameObject GetQuestLoot(Loot loot)
+    {
+        switch (loot.lootType)
+        {
+            default:
+            case Loot.LootType.weddingRing:
+                return Instantiate(weddingRingPrefab);
+            case Loot.LootType.cellPhone:
+                return Instantiate(cellPhonePrefab);
+            case Loot.LootType.sunGlasses:
+                return Instantiate(sunGlassesPrefab);
+            case Loot.LootType.necklace:
+                return Instantiate(necklacePrefab);
+            case Loot.LootType.bracelet:
+                return Instantiate(braceletPrefab);
         }
     }
 
