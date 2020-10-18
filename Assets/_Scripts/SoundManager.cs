@@ -11,7 +11,7 @@ public class SoundManager : MonoBehaviour
     {
         hit1 = Resources.Load<AudioClip>("Hit1");
         hit2 = Resources.Load<AudioClip>("Hit2");
-        hit3 = Resources.Load<AudioClip>("Hit4");
+        hit3 = Resources.Load<AudioClip>("Hit3");
         hit4 = Resources.Load<AudioClip>("Hit4");
         lowBattery = Resources.Load<AudioClip>("Low_Battery");
         beep = Resources.Load<AudioClip>("Detector_Beep");
