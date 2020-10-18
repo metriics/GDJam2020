@@ -3567,6 +3567,7 @@ MonoBehaviour:
     type: 3}
   braceletPrefab: {fileID: 5143742747720244447, guid: 51db7b183635ce44e89bab31c573b4c8,
     type: 3}
+  detector: {fileID: 386947672}
 --- !u!4 &1532980697
 Transform:
   m_ObjectHideFlags: 0
