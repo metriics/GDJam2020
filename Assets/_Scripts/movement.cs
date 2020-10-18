@@ -39,6 +39,7 @@ public class movement : MonoBehaviour
         inventory.AddLoot(new Loot { lootType = Loot.LootType.necklace, amount = 1 });
         inventory.AddLoot(new Loot { lootType = Loot.LootType.bracelet, amount = 1 });
         inventory.AddLoot(new Loot { lootType = Loot.LootType.weddingRing, amount = 1 });
+        inventory.AddLoot(new Loot { lootType = Loot.LootType.metalScraps, amount = 25 });
     }
 
     // Update is called once per frame
