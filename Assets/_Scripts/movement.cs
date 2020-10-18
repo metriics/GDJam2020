@@ -125,7 +125,7 @@ public class movement : MonoBehaviour
             {
                 isAttacking = true;
             }
-            if (Input.GetKeyDown(KeyCode.E) && canDig && !DetectorBehaviour.IsBatteryDead())
+            if (Input.GetKeyDown(KeyCode.E) && canDig)
             {
                 isDigging = true;
                 animator.SetBool("Digging", true);

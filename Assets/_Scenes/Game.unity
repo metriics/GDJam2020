@@ -2358,7 +2358,8 @@ MonoBehaviour:
   player: {fileID: 948983503}
   crabPrefab: {fileID: 6105244542850145693, guid: 2f51a9eb57db81540bf7ff6a0fe03e6c,
     type: 3}
-  jellyPrefab: {fileID: 0}
+  jellyPrefab: {fileID: 6284756504179072350, guid: b926b52d942c5fe48be907016966360a,
+    type: 3}
   enemyList: []
 --- !u!4 &767976641
 Transform:
