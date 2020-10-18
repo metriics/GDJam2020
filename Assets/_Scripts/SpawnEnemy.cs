@@ -8,6 +8,7 @@ public class SpawnEnemy : MonoBehaviour
     public GameObject player;
     static Vector3 spawnPos;
     public GameObject crabPrefab;
+    public GameObject jellyPrefab;
     public List<GameObject> enemyList;
 
     private void Awake()
@@ -39,17 +40,14 @@ public class SpawnEnemy : MonoBehaviour
 
         // ----LOOT TABLE----
         // Change spawn rates here
-        if (chance <= 100.0f) // coin
+        if (chance <= 50.0f)
         {
             return Instantiate(crabPrefab);
         }
-        else if (chance <= 15.0f) // ???
+        else
         {
+            return Instantiate(jellyPrefab);
         }
-        else // scraps
-        {
-        }
-        return Instantiate(crabPrefab);
     }
 
     private GameObject SetPosition(GameObject enemy)

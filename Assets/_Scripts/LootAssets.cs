@@ -18,4 +18,5 @@ public class LootAssets : MonoBehaviour
     public Sprite sunGlassesSprite;
     public Sprite necklaceSprite;
     public Sprite braceletSprite;
+    public Sprite chestSprite;
 }

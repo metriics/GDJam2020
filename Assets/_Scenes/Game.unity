@@ -193,7 +193,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 99ef0e43b170ed94d82b94e44683b383, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1812,7 +1812,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a5dbd25edfe9767419eb8461d35b5753, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 716485d472488f8428cd7ff5d5c4bb5f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
@@ -2358,6 +2358,7 @@ MonoBehaviour:
   player: {fileID: 948983503}
   crabPrefab: {fileID: 6105244542850145693, guid: 2f51a9eb57db81540bf7ff6a0fe03e6c,
     type: 3}
+  jellyPrefab: {fileID: 0}
   enemyList: []
 --- !u!4 &767976641
 Transform:
@@ -2928,7 +2929,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -8441141775312786039, guid: 91badcd3a23731a4eb2e5e28c6f84713,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3204,6 +3205,8 @@ MonoBehaviour:
   sunGlassesSprite: {fileID: 21300000, guid: 9d5f37e6113515b4a857b601a0f57cd4, type: 3}
   necklaceSprite: {fileID: 21300000, guid: 78126773fafad5e43b1e11add15c7a0e, type: 3}
   braceletSprite: {fileID: 21300000, guid: 9b5639776397b8e4a963628a09748d94, type: 3}
+  chestSprite: {fileID: -8800672535034734051, guid: 9c56589b9f9eb0f468d578ec9ecae858,
+    type: 3}
 --- !u!4 &1175221820
 Transform:
   m_ObjectHideFlags: 0
@@ -3818,7 +3821,7 @@ RectTransform:
   m_GameObject: {fileID: 1453131249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 1890051756}
   m_RootOrder: 1
@@ -4080,7 +4083,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4682,7 +4685,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: a6b36e51bc8c38248b6a0abe75b7b3e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5049,6 +5052,7 @@ GameObject:
   - component: {fileID: 1890051755}
   - component: {fileID: 1890051754}
   - component: {fileID: 1890051757}
+  - component: {fileID: 1890051758}
   m_Layer: 0
   m_Name: QuestNPC
   m_TagString: Untagged
@@ -5067,8 +5071,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7012167, y: 2.341895, z: 0.2}
-  m_Center: {x: -0.0204463, y: -0.24536538, z: 0}
+  m_Size: {x: 1.2616253, y: 1.3768959, z: 0.2}
+  m_Center: {x: -0.025527954, y: 0.22460818, z: 0}
 --- !u!212 &1890051755
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5109,9 +5113,10 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 38ad069ebad483d41ae5311cbd60b055, type: 3}
+  m_Sprite: {fileID: -627459067319089766, guid: 33dd5862c6fe22f47a3e1a9ddab2b85f,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.56, y: 2.56}
@@ -5150,6 +5155,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 948983503}
   UI: {fileID: 1453131251}
+--- !u!95 &1890051758
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890051753}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ca81881d7d08f1e4580ab9fa4cc7ff19, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1914815088
 GameObject:
   m_ObjectHideFlags: 0
@@ -5467,7 +5491,7 @@ Transform:
   m_GameObject: {fileID: 1960384900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.876, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 1890051756}
   m_RootOrder: 0
@@ -5598,7 +5622,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: d2bfba7f0cbae4f4a8640d1a78bb73a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

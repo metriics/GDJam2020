@@ -37,13 +37,9 @@ public class movement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         GameEvents.current.onEnemyAttack += Knockback;
         GameEvents.current.onDugUp += OnDugUp;
+        GameEvents.current.onEnemyKilled += enemyLoot;
         inventory = new Inventory();
         inventoryUI.SetInventory(inventory);
-        //inventory.AddLoot(new Loot { lootType = Loot.LootType.coin, amount = 100 });
-        inventory.AddLoot(new Loot { lootType = Loot.LootType.necklace, amount = 1 });
-        inventory.AddLoot(new Loot { lootType = Loot.LootType.bracelet, amount = 1 });
-        inventory.AddLoot(new Loot { lootType = Loot.LootType.weddingRing, amount = 1 });
-        inventory.AddLoot(new Loot { lootType = Loot.LootType.metalScraps, amount = 25 });
     }
 
     // Update is called once per frame
@@ -258,5 +254,12 @@ public class movement : MonoBehaviour
             detector.SetActive(false);
             GameEvents.current.ColdLoot();
         }
+    }
+
+    private void enemyLoot()
+    {
+        Loot tempLoot;
+        tempLoot = Loot.GenerateRewardLoot();
+        inventory.AddLoot(tempLoot);
     }
 }

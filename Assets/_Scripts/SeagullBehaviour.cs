@@ -114,6 +114,7 @@ public class SeagullBehaviour : MonoBehaviour
         if (health <= 0)
         {
             //Die
+            GameEvents.current.EnemyKilled();
             Destroy(this.gameObject);
         }
     }

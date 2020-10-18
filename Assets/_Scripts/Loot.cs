@@ -12,7 +12,8 @@ public class Loot : MonoBehaviour
         cellPhone,
         sunGlasses,
         necklace,
-        bracelet
+        bracelet,
+        chest
     }
 
     public LootType lootType;
@@ -87,15 +88,19 @@ public class Loot : MonoBehaviour
 
         if (chance <= 5.0f) // coin
         {
-            loot = new Loot { lootType = Loot.LootType.coin, amount = 50 };
+            loot = new Loot { lootType = Loot.LootType.coin, amount = 15 };
         }
-        else if (chance <= 15.0f) // ???
+        else if (chance <= 15.0f) // coin
         {
-            loot = new Loot { lootType = Loot.LootType.coin, amount = 25 };
+            loot = new Loot { lootType = Loot.LootType.coin, amount = 5 };
+        }
+        else if (chance <= 30.0f) // ???
+        {
+            loot = new Loot { lootType = Loot.LootType.coin, amount = 3 };
         }
         else // scraps
         {
-            loot = new Loot { lootType = Loot.LootType.coin, amount = 10 };
+            loot = new Loot { lootType = Loot.LootType.coin, amount = 1 };
         }
 
         return loot;
@@ -108,6 +113,10 @@ public class Loot : MonoBehaviour
         float chance = Random.Range(0.0f, 100.0f);
 
         if (chance <= 5.0f) // coin
+        {
+            loot = new Loot { lootType = Loot.LootType.chest, amount = 1 };
+        }
+        else if (chance <= 30.0f) // coin
         {
             loot = new Loot { lootType = Loot.LootType.coin, amount = 1 };
         }
@@ -137,6 +146,8 @@ public class Loot : MonoBehaviour
                 return LootAssets.Instance.necklaceSprite;
             case LootType.bracelet: 
                 return LootAssets.Instance.braceletSprite;
+            case LootType.chest:
+                return LootAssets.Instance.chestSprite;
         }
     }
 
@@ -159,6 +170,8 @@ public class Loot : MonoBehaviour
                 return false;
             case LootType.bracelet:
                 return false;
+            case LootType.chest:
+                return true;
         }
     }
 
