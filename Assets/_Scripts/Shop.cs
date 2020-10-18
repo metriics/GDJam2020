@@ -167,6 +167,8 @@ public class Shop : MonoBehaviour
             // cant upgrade past 3
             Debug.Log("Can't upgrade past level 3");
         }
+
+        detector.GetComponent<DetectorBehaviour>().BatteryRefill();
     }
 
 

@@ -8,7 +8,9 @@ public class DetectorBehaviour : MonoBehaviour
     public Sprite off;
     public float blinkDelay = 0.25f;
 
-
+    public GameObject battery33;
+    public GameObject battery23;
+    public GameObject battery13;
 
     private int batteryLevel = 3;
     private float batteryDepletionSpeed = 30.0f;
@@ -27,6 +29,8 @@ public class DetectorBehaviour : MonoBehaviour
         GameEvents.current.onHotLoot += SetStatusOn;
 
         batteryDepletionTimer = batteryDepletionSpeed;
+        UpdateBatterySprite();
+        deadBattery = false;
     }
 
     // Update is called once per frame
@@ -75,6 +79,7 @@ public class DetectorBehaviour : MonoBehaviour
             {
                 batteryLevel -= 1;
                 batteryDepletionTimer = batteryDepletionSpeed;
+                UpdateBatterySprite();
                 Debug.Log(batteryLevel);
             }
         }
@@ -96,9 +101,38 @@ public class DetectorBehaviour : MonoBehaviour
         }
     }
 
+    private void UpdateBatterySprite()
+    {
+        if (batteryLevel == 3)
+        {
+            battery33.SetActive(true);
+            battery23.SetActive(false);
+            battery13.SetActive(false);
+        }
+        else if (batteryLevel == 2)
+        {
+            battery33.SetActive(false);
+            battery23.SetActive(true);
+            battery13.SetActive(false);
+        }
+        else if (batteryLevel == 1)
+        {
+            battery33.SetActive(false);
+            battery23.SetActive(false);
+            battery13.SetActive(true);
+        }
+        else if (batteryLevel == 0)
+        {
+            battery33.SetActive(false);
+            battery23.SetActive(false);
+            battery13.SetActive(false);
+        }
+    }
+
     public void SetBatteryDepletionSpeed(float speed)
     {
         batteryDepletionSpeed = speed;
+        UpdateBatterySprite();
     }
 
     public float GetBatteryDepletionSpeed()
@@ -109,6 +143,7 @@ public class DetectorBehaviour : MonoBehaviour
     public void BatteryRefill()
     {
         batteryLevel = 3;
+        UpdateBatterySprite();
     }
 
     private void SetStatusOff()
