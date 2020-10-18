@@ -32,6 +32,7 @@ public class DetectorBehaviour : MonoBehaviour
         GameEvents.current.onColdLoot += SetStatusOff;
         GameEvents.current.onWarmLoot += SetStatusBlinking;
         GameEvents.current.onHotLoot += SetStatusOn;
+        GameEvents.current.onEnemyAttack += GotHit;
 
         batteryDepletionTimer = batteryDepletionSpeed;
         UpdateBatterySprite();
@@ -178,5 +179,14 @@ public class DetectorBehaviour : MonoBehaviour
     public string GetStatus()
     {
         return status;
+    }
+
+    private void GotHit()
+    {
+        if (batteryLevel > 0)
+        {
+            batteryLevel--;
+            UpdateBatterySprite();
+        }
     }
 }
