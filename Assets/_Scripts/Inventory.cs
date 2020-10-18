@@ -58,7 +58,10 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        RemoveLoot(invScraps);
+        if (scraps >= 0)
+        {
+            RemoveLoot(invScraps);
+        }
 
         if (scraps >= 2)
         {
