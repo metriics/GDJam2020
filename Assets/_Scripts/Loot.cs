@@ -34,6 +34,7 @@ public class Loot : MonoBehaviour
     static public Loot GenerateLoot()
     {
         Loot loot;
+
         float chance = Random.Range(0.0f, 100.0f);
 
         if (chance <= 5.0f) // coin
@@ -105,6 +106,7 @@ public class Loot : MonoBehaviour
         if (other.tag == "HotCollider")
         {
             GameEvents.current.HotLoot();
+            SpawnEnemy.SetPosition(this.transform.position);
             isHot = true;
         }
 

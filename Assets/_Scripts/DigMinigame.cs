@@ -22,10 +22,9 @@ public class DigMinigame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Transform digUI = player.transform.Find("Dig").GetComponent<Transform>();
         if (active)
         {
-
-            Transform digUI = player.transform.Find("Dig").GetComponent<Transform>();
             digUI.gameObject.SetActive(true);
 
             progress -= decreaseMultiplier * Time.deltaTime;
@@ -58,6 +57,10 @@ public class DigMinigame : MonoBehaviour
                 digUI.gameObject.SetActive(false);
                 GameEvents.current.DugUp();
             }
+        }
+        else
+        {
+            digUI.gameObject.SetActive(false);
         }
     }
 

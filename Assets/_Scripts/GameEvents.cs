@@ -23,6 +23,7 @@ public class GameEvents : MonoBehaviour
     public event Action onInvUpdate;
     public event Action onDig;
     public event Action onDugUp;
+    public event Action onEnemySpawn;
 
     public void CubeTouched()
     {
@@ -100,6 +101,14 @@ public class GameEvents : MonoBehaviour
         if(onDugUp != null)
         {
             onDugUp();
+        }
+    }
+
+    public void EnemySpawn()
+    {
+        if(onEnemySpawn != null)
+        {
+            onEnemySpawn();
         }
     }
 }
